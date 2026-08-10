@@ -1,36 +1,285 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚗 TamraLine | تمرا لاين
 
-## Getting Started
+**TamraLine** هي منصة عراقية لتسهيل مواصلات طلاب الجامعات، تتيح للطلاب العثور على الرحلات المناسبة لهم والتواصل مع السائقين بسهولة عبر WhatsApp.
 
-First, run the development server:
+تهدف المنصة إلى جعل التنقل اليومي إلى الجامعة **أسهل، أسرع وأكثر أماناً** من خلال عرض الرحلات حسب الجامعة، المحافظة، المنطقة والدوام.
+
+---
+
+## ✨ المميزات
+
+* 🚗 عرض الرحلات المتوفرة للطلاب.
+* 🔎 البحث عن الرحلات حسب:
+
+  * المنطقة.
+  * الجامعة.
+  * المحافظة.
+  * الدوام الصباحي أو المسائي.
+* 📄 Pagination لعرض الرحلات على صفحات، بواقع **5 رحلات لكل صفحة**.
+* 👤 إنشاء حساب وتسجيل الدخول.
+* 🔐 المصادقة باستخدام Token.
+* 👨‍💼 صفحة الملف الشخصي.
+* ✏️ تعديل بيانات المستخدم.
+* 📱 التواصل مع السائق مباشرة عبر WhatsApp.
+* 📷 إضافة صورة للسيارة.
+* 🏫 اختيار الجامعة ومناطق المرور.
+* 🛠️ إنشاء وإدارة منشورات الرحلات.
+* 📱 تصميم متجاوب مع الهاتف والكمبيوتر.
+* 🇮🇶 واجهة عربية بالكامل مع دعم RTL.
+
+---
+
+## 🛠️ التقنيات المستخدمة
+
+### Frontend
+
+* **Next.js**
+* **React**
+* **TypeScript**
+* **Tailwind CSS**
+* **Next Image**
+* **Font Awesome**
+
+### Backend
+
+* **ASP.NET Core Web API**
+* **Entity Framework Core**
+* **ASP.NET Core Identity**
+* **MySQL**
+
+### خدمات إضافية
+
+* **ImageKit** لتخزين صور السيارات.
+* **WhatsApp** للتواصل بين الطالب والسائق.
+* **Vercel** لاستضافة الواجهة الأمامية.
+
+---
+
+## 📁 هيكل المشروع
+
+```text
+src/
+├── app/
+│   ├── auth/
+│   │   ├── Post/
+│   │   └── User/
+│   │
+│   ├── Posts/
+│   │   ├── components/
+│   │   │   ├── Pagination.tsx
+│   │   │   ├── PostFilters.tsx
+│   │   │   └── PostsList.tsx
+│   │   │
+│   │   ├── page.tsx
+│   │   └── postTypes.ts
+│   │
+│   ├── profile/
+│   │
+│   ├── login/
+│   │
+│   ├── register/
+│   │
+│   ├── layout.tsx
+│   └── globals.css
+│
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   │
+│   └── Ui/
+│       ├── Header/
+│       ├── Post/
+│       └── login & register/
+│
+└── ...
+```
+
+---
+
+## 🚀 تشغيل المشروع
+
+أولاً قم بتثبيت الحزم:
+
+```bash
+npm install
+```
+
+ثم شغّل المشروع في وضع التطوير:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+أو باستخدام:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+أو:
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+بعد تشغيل المشروع افتح:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔐 إعداد البيئة
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+قم بإنشاء ملف:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+.env.local
+```
+
+وأضف متغيرات البيئة المطلوبة للمشروع، مثل رابط الـ API:
+
+```env
+NEXT_PUBLIC_API_URL=YOUR_API_URL
+```
+
+> لا تقم برفع ملف `.env.local` إلى GitHub إذا كان يحتوي على مفاتيح أو بيانات سرية.
+
+---
+
+## 📄 نظام الرحلات
+
+يتم جلب الرحلات من الـ API بشكل مقسم إلى صفحات.
+
+كل صفحة تحتوي على **5 منشورات**:
+
+```text
+Page 1
+├── Post 1
+├── Post 2
+├── Post 3
+├── Post 4
+└── Post 5
+
+Page 2
+├── Post 6
+├── Post 7
+├── Post 8
+├── Post 9
+└── Post 10
+```
+
+ويتم الانتقال بين الصفحات باستخدام أزرار:
+
+```text
+السابق    1 / 5    التالي
+```
+
+---
+
+## 🔎 فلترة الرحلات
+
+يمكن للطالب البحث عن الرحلة المناسبة باستخدام:
+
+```text
+المنطقة
+   ↓
+الجامعة
+   ↓
+المحافظة
+   ↓
+الدوام
+```
+
+ثم يتم إرسال بيانات الفلترة إلى الـ API للحصول على النتائج المناسبة.
+
+---
+
+## 🚗 إنشاء رحلة
+
+يمكن للسائق إنشاء منشور جديد وإضافة:
+
+* اسم السيارة.
+* صورة السيارة.
+* وصف الرحلة.
+* الجامعة.
+* المحافظة.
+* الدوام.
+* مناطق المرور.
+
+بعد إنشاء المنشور يتم عرضه ضمن الرحلات المتوفرة للطلاب.
+
+---
+
+## 📱 التواصل مع السائق
+
+توفر المنصة زر:
+
+```text
+🟢 تواصل عبر واتساب
+```
+
+والذي يفتح محادثة WhatsApp مباشرة مع رقم السائق.
+
+---
+
+## 👤 الحساب
+
+يمكن للمستخدم:
+
+* إنشاء حساب.
+* تسجيل الدخول.
+* عرض الملف الشخصي.
+* تعديل بيانات الحساب.
+* إنشاء منشورات الرحلات.
+* إدارة منشوراته.
+
+---
+
+## 🎨 التصميم
+
+تم تصميم الواجهة لتكون:
+
+* 🇮🇶 باللغة العربية.
+* ↔️ RTL.
+* 📱 متوافقة مع الهاتف.
+* 💻 متوافقة مع الكمبيوتر.
+* 🎨 بألوان مستوحاة من هوية TamraLine.
+
+الألوان الأساسية:
+
+```text
+#432E1A
+#5B3F22
+#EFE1D1
+```
+
+---
+
+## 🌐 النشر
+
+يمكن نشر مشروع Next.js بسهولة باستخدام Vercel.
+
+بعد رفع المشروع إلى GitHub، اربطه بمنصة Vercel وقم بإضافة متغيرات البيئة المطلوبة من إعدادات المشروع.
+
+---
+
+## 📚 المصادر
+
+* Next.js Documentation
+* React Documentation
+* Tailwind CSS Documentation
+* ASP.NET Core Documentation
+* Entity Framework Core Documentation
+
+---
+
+## 👨‍💻 TamraLine
+
+**TamraLine | تمرا لاين**
+
+منصة تساعد طلاب الجامعات في العراق على الوصول إلى رحلات جامعية مناسبة والتواصل مع السائقين بسهولة.
+
+> 🚗 رحلتك إلى الجامعة... أسهل مع تمرا لاين.
