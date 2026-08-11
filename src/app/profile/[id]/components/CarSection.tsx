@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { GetProfileDto } from "../../../auth/Post/postDto";
+import { GetProfileDto } from "../../../auth/post/postDto";
 import EditButton from "./EditButton";
 import StatusBadge from "./StatusBadge";
 

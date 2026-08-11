@@ -1,4 +1,4 @@
-import { GetProfileDto } from "../../../auth/Post/postDto";
+import { GetProfileDto } from "../../../auth/post/postDto";
 import EditButton from "./EditButton";
 
 type DescriptionSectionProps = {

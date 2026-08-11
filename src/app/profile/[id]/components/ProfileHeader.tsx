@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { GetProfileDto } from "../../../auth/Post/postDto";
+import { GetProfileDto } from "../../../auth/post/postDto";
 import EditButton from "./EditButton";
 
 type ProfileHeaderProps = {
