@@ -5,7 +5,6 @@ import { registerApi } from "@/src/app/auth/User/UserApi";
 
 import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
-import Link from "next/link";
 import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
 import { useRouter } from "next/navigation";
 
@@ -126,7 +125,6 @@ export default function Register() {
           إنشاء حساب
         </h1>
 
-        {/* Full Name */}
         <div className="flex flex-col gap-2">
           <label className="text-right text-[#432E1A] font-semibold">
             الاسم الكامل
@@ -192,7 +190,6 @@ export default function Register() {
           </select>
         </div>
 
-         {/* Gender */}
         <div className="flex flex-col gap-2">
           <label className="text-right text-[#432E1A] font-semibold">
             حدد الجنس

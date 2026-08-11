@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { postApi, PostFilter } from "../auth/Post/postApi";
+import { postApi, PostFilter } from "./../auth/post/postApi";
 
 import PostFilters from "./components/PostFilters";
 import PostsList from "./components/PostsList";

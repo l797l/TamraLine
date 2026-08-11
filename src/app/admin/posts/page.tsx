@@ -17,9 +17,6 @@ export default function AdminPostsPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [error, setError] = useState("");
 
-  // =========================
-  // Get Posts
-  // =========================
 
   const getPosts = async () => {
     try {
@@ -31,9 +28,6 @@ export default function AdminPostsPage() {
       setPosts(response);
     } catch (error: any) {
       console.error("Get admin posts error:", error);
-
-      // 401 = غير مسجل الدخول
-      // 403 = ليس Admin
       if (
         error?.response?.status === 401 ||
         error?.response?.status === 403
@@ -48,9 +42,6 @@ export default function AdminPostsPage() {
     }
   };
 
-  // =========================
-  // Initial Get Posts
-  // =========================
 
   useEffect(() => {
     let cancelled = false;
@@ -90,22 +81,17 @@ export default function AdminPostsPage() {
     };
   }, [router]);
 
-  // =========================
-  // Update Status
-  // =========================
+
 
   const handleUpdateStatus = async (
     status: number,
     phoneNumber: string
   ) => {
     try {
-      // Loading للمنشور الحالي فقط
       setActionLoading(phoneNumber);
 
-      // إرسال الحالة للـ API
       await updateStatus(status, phoneNumber);
 
-      // حذف المنشور بعد نجاح العملية
       setPosts((currentPosts) =>
         currentPosts.filter(
           (post) => post.phoneNumber !== phoneNumber
@@ -114,7 +100,6 @@ export default function AdminPostsPage() {
     } catch (error: any) {
       console.error("Update post status error:", error);
 
-      // إذا انتهت الجلسة أو لم يعد المستخدم Admin
       if (
         error?.response?.status === 401 ||
         error?.response?.status === 403
@@ -129,9 +114,7 @@ export default function AdminPostsPage() {
     }
   };
 
-  // =========================
-  // Page Loading
-  // =========================
+ 
 
   if (loading) {
     return (
@@ -154,9 +137,7 @@ export default function AdminPostsPage() {
     );
   }
 
-  // =========================
-  // Error
-  // =========================
+
 
   if (error) {
     return (
@@ -189,9 +170,7 @@ export default function AdminPostsPage() {
     );
   }
 
-  // =========================
-  // Page
-  // =========================
+  
 
   return (
     <main
@@ -200,10 +179,7 @@ export default function AdminPostsPage() {
     >
       <div className="mx-auto max-w-6xl">
 
-        {/* =========================
-            Header
-        ========================= */}
-
+       
         <div className="mb-10 text-right">
 
           <h1 className="text-3xl font-bold sm:text-4xl">
@@ -228,9 +204,7 @@ export default function AdminPostsPage() {
 
         </div>
 
-        {/* =========================
-            Empty
-        ========================= */}
+      
 
         {posts.length === 0 ? (
           <div className="rounded-3xl bg-[#432E1A] p-12 text-center">
@@ -250,9 +224,7 @@ export default function AdminPostsPage() {
           </div>
         ) : (
 
-          /* =========================
-             Posts
-          ========================= */
+         
 
           <div className="grid gap-6">
 
@@ -269,9 +241,7 @@ export default function AdminPostsPage() {
 
                   <div className="grid lg:grid-cols-[320px_1fr]">
 
-                    {/* =========================
-                        Image
-                    ========================= */}
+           
 
                     <div className="relative min-h-[280px] bg-[#5B3F22] lg:min-h-full">
 
@@ -283,7 +253,6 @@ export default function AdminPostsPage() {
                         className="object-cover"
                       />
 
-                      {/* Status */}
 
                       <div className="absolute right-4 top-4">
 
@@ -295,13 +264,9 @@ export default function AdminPostsPage() {
 
                     </div>
 
-                    {/* =========================
-                        Content
-                    ========================= */}
-
+                   
                     <div className="p-6 text-right sm:p-8">
 
-                      {/* Driver */}
 
                       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
@@ -334,7 +299,6 @@ export default function AdminPostsPage() {
 
                       </div>
 
-                      {/* Car */}
 
                       <div className="mb-6 rounded-2xl bg-[#5B3F22] p-5">
 
@@ -348,11 +312,9 @@ export default function AdminPostsPage() {
 
                       </div>
 
-                      {/* Information */}
 
                       <div className="grid gap-4 sm:grid-cols-2">
 
-                        {/* University */}
 
                         <div className="rounded-2xl bg-[#5B3F22] p-4">
 
@@ -366,7 +328,6 @@ export default function AdminPostsPage() {
 
                         </div>
 
-                        {/* Governorate */}
 
                         <div className="rounded-2xl bg-[#5B3F22] p-4">
 
@@ -380,7 +341,6 @@ export default function AdminPostsPage() {
 
                         </div>
 
-                        {/* Shift */}
 
                         <div className="rounded-2xl bg-[#5B3F22] p-4">
 
@@ -396,7 +356,6 @@ export default function AdminPostsPage() {
 
                         </div>
 
-                        {/* Areas */}
 
                         <div className="rounded-2xl bg-[#5B3F22] p-4">
 
@@ -423,7 +382,6 @@ export default function AdminPostsPage() {
 
                       </div>
 
-                      {/* Description */}
 
                       <div className="mt-4 rounded-2xl bg-[#5B3F22] p-5">
 
@@ -437,13 +395,10 @@ export default function AdminPostsPage() {
 
                       </div>
 
-                      {/* =========================
-                          Actions
-                      ========================= */}
+                   
 
                       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
 
-                        {/* Approve */}
 
                         <button
                           type="button"

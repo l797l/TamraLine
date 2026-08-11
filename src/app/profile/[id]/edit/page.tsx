@@ -63,7 +63,6 @@ export default function EditProfilePage() {
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-            {/* Full Name */}
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
                 الاسم الكامل

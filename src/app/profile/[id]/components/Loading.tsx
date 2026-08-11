@@ -38,7 +38,6 @@ export default function Loading() {
         </div>
 
 
-        {/* Car */}
 
         <div className="mt-6 overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl">
 

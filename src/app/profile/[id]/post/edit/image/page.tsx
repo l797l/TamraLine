@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 export default function EditImagePage() {
   const params = useParams();
@@ -10,19 +10,14 @@ export default function EditImagePage() {
 
   const id = params.id as string;
 
-  // الصورة الحالية/المعاينة
   const [imagePreview, setImagePreview] = useState<string | null>(
     "/headerLogo.png"
   );
 
-  // الملف الحقيقي الذي سيتم إرساله للـ API
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const [loading, setLoading] = useState(false);
 
-  // =========================
-  // Image Select
-  // =========================
 
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -41,18 +36,13 @@ export default function EditImagePage() {
       return;
     }
 
-    // نخزن File الحقيقي
     setImageFile(file);
 
-    // نسوي Preview
     const imageUrl = URL.createObjectURL(file);
     setImagePreview(imageUrl);
   };
 
-  // =========================
-  // Save
-  // =========================
-
+  
   const handleSave = async () => {
     if (!imageFile) {
       alert("يرجى اختيار صورة جديدة");
@@ -66,12 +56,7 @@ export default function EditImagePage() {
 
       formData.append("formFile", imageFile);
 
-      /*
-        مهم:
-        لا تضيف Content-Type بنفسك.
-        المتصفح يضيف multipart/form-data
-        مع boundary تلقائياً.
-      */
+
 
       const response = await fetch(
         `/api/Post/UpdateImage/${id}`,
@@ -104,9 +89,6 @@ export default function EditImagePage() {
     }
   };
 
-  // =========================
-  // JSX
-  // =========================
 
   return (
     <main
@@ -115,7 +97,6 @@ export default function EditImagePage() {
     >
       <div className="mx-auto max-w-2xl">
 
-        {/* Header */}
 
         <div className="mb-6 text-center">
 
@@ -133,11 +114,9 @@ export default function EditImagePage() {
 
         </div>
 
-        {/* Card */}
 
         <div className="rounded-3xl bg-[#432E1A] p-6 shadow-xl sm:p-8">
 
-          {/* Preview */}
 
           <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-3xl bg-[#5B3F22]">
 
@@ -157,7 +136,6 @@ export default function EditImagePage() {
 
           </div>
 
-          {/* Upload */}
 
           <div className="mt-6">
 
@@ -190,7 +168,6 @@ export default function EditImagePage() {
 
           </div>
 
-          {/* Selected file */}
 
           {imageFile && (
             <div className="mt-4 rounded-2xl bg-[#5B3F22] p-4 text-[#EFE1D1]">
@@ -206,7 +183,6 @@ export default function EditImagePage() {
             </div>
           )}
 
-          {/* Buttons */}
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
 

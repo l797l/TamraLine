@@ -77,25 +77,18 @@ export default function CreatePostPage() {
   const [nameCar, setNameCar] = useState("");
   const [description, setDescription] = useState("");
 
-  // الجامعة ID
   const [universityId, setUniversityId] = useState<number | "">("");
 
-  // الدوام
   const [shift, setShift] = useState(0);
 
-  // المناطق IDs
   const [areas, setAreas] = useState<number[]>([]);
 
-  // الصورة
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  // Loading
   const [loading, setLoading] = useState(false);
 
-  // =========================
-  // Image Preview Cleanup
-  // =========================
+
 
   useEffect(() => {
     return () => {
@@ -105,9 +98,6 @@ export default function CreatePostPage() {
     };
   }, [imagePreview]);
 
-  // =========================
-  // Toggle Area
-  // =========================
 
   const toggleArea = (areaId: number) => {
     setAreas((current) =>
@@ -117,9 +107,7 @@ export default function CreatePostPage() {
     );
   };
 
-  // =========================
-  // Image Select
-  // =========================
+
 
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -135,41 +123,32 @@ export default function CreatePostPage() {
       return;
     }
 
-    // الحد الأقصى 5MB
     if (file.size > 5 * 1024 * 1024) {
       alert("حجم الصورة يجب أن يكون أقل من 5MB");
       e.target.value = "";
       return;
     }
 
-    // إنشاء Preview جديد
     const objectUrl = URL.createObjectURL(file);
 
     setImage(file);
     setImagePreview(objectUrl);
   };
 
-  // =========================
-  // Remove Image
-  // =========================
+
 
   const removeImage = () => {
     setImage(null);
     setImagePreview(null);
   };
 
-  // =========================
-  // Submit
-  // =========================
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault();
 
-    // =========================
-    // Validation
-    // =========================
+    
 
     if (!nameCar.trim()) {
       alert("يرجى إدخال اسم السيارة");
@@ -199,9 +178,6 @@ export default function CreatePostPage() {
     setLoading(true);
 
     try {
-      // =========================
-      // Debug
-      // =========================
 
       console.log("CREATE POST DATA:", {
         image,
@@ -212,10 +188,6 @@ export default function CreatePostPage() {
         shift,
         description,
       });
-
-      // =========================
-      // Create Post API
-      // =========================
 
       await createPost(
         image,
@@ -242,18 +214,13 @@ export default function CreatePostPage() {
     }
   };
 
-  // =========================
-  // JSX
-  // =========================
 
   return (
     <main className="min-h-screen bg-[#EFE1D1] px-4 py-10" dir="rtl">
       <div className="mx-auto max-w-3xl">
         <div className="rounded-3xl bg-[#432E1A] p-6 shadow-xl sm:p-8">
 
-          {/* =========================
-              Header
-          ========================= */}
+
 
           <div className="text-center">
 
@@ -271,18 +238,11 @@ export default function CreatePostPage() {
 
           </div>
 
-          {/* =========================
-              Form
-          ========================= */}
 
           <form
             onSubmit={handleSubmit}
             className="mt-8 space-y-6"
           >
-
-            {/* =========================
-                Car
-            ========================= */}
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70 ">
@@ -300,9 +260,7 @@ export default function CreatePostPage() {
               />
             </div>
 
-            {/* =========================
-                Description
-            ========================= */}
+
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
@@ -320,10 +278,7 @@ export default function CreatePostPage() {
               />
             </div>
 
-            {/* =========================
-                University
-            ========================= */}
-
+    
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
                 الجامعة
@@ -365,9 +320,6 @@ export default function CreatePostPage() {
               </select>
             </div>
 
-            {/* =========================
-                Governorate
-            ========================= */}
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
@@ -379,9 +331,6 @@ export default function CreatePostPage() {
               </div>
             </div>
 
-            {/* =========================
-                Shift
-            ========================= */}
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
@@ -415,9 +364,6 @@ export default function CreatePostPage() {
               </select>
             </div>
 
-            {/* =========================
-                Areas
-            ========================= */}
 
             <div>
 
@@ -466,9 +412,7 @@ export default function CreatePostPage() {
 
             </div>
 
-            {/* =========================
-                Image
-            ========================= */}
+          
 
             <div>
 
@@ -511,7 +455,6 @@ export default function CreatePostPage() {
 
                 <div className="overflow-hidden rounded-2xl bg-[#5B3F22]">
 
-                  {/* Preview */}
 
                   <div className="relative h-72 w-full">
 
@@ -525,7 +468,6 @@ export default function CreatePostPage() {
 
                   </div>
 
-                  {/* Image Info */}
 
                   <div className="flex items-center justify-between gap-3 p-4">
 
@@ -549,7 +491,6 @@ export default function CreatePostPage() {
 
                     <div className="flex shrink-0 gap-2">
 
-                      {/* Change */}
 
                       <label
                         htmlFor="change-image"

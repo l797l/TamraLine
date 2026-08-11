@@ -3,13 +3,10 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getProfile, updatePost } from "../../../../auth/Post/postApi";
+import { getProfile, updatePost } from "../../../../auth/post/postApi";
 
-import { GetProfileDto } from "../../../../auth/Post/postDto";
+import { GetProfileDto } from "../../../../auth/post/postDto";
 
-// =========================
-// Areas
-// =========================
 
 const mockAreas = [
   {
@@ -30,9 +27,6 @@ const mockAreas = [
   },
 ];
 
-// =========================
-// Universities
-// =========================
 
 const mockUniversities = [
   {
@@ -61,9 +55,6 @@ const mockUniversities = [
   },
 ];
 
-// =========================
-// Page
-// =========================
 
 export default function EditPostPage() {
   const params = useParams();
@@ -71,44 +62,26 @@ export default function EditPostPage() {
 
   const id = params.id as string;
 
-  // =========================
-  // Profile
-  // =========================
 
   const [post, setPost] = useState<GetProfileDto | null>(null);
-
-  // =========================
-  // Form
-  // =========================
 
   const [nameCar, setNameCar] = useState("");
 
   const [description, setDescription] = useState("");
 
-  // مهم جداً:
-  // universityId رقم وليس string
   const [universityId, setUniversityId] = useState<number>(0);
 
   const [shift, setShift] = useState<number>(0);
 
   const [governorateId, setGovernorateId] = useState<number>(1);
 
-  // IDs للمناطق
   const [areas, setAreas] = useState<number[]>([]);
-
-  // =========================
-  // Page State
-  // =========================
 
   const [loading, setLoading] = useState(true);
 
   const [saving, setSaving] = useState(false);
 
   const [error, setError] = useState("");
-
-  // =========================
-  // Get Profile
-  // =========================
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -122,81 +95,30 @@ export default function EditPostPage() {
 
         setPost(data);
 
-        // =========================
-        // Name Car
-        // =========================
-
         setNameCar(data.nameCar ?? "");
-
-        // =========================
-        // Description
-        // =========================
 
         setDescription(data.desciption ?? "");
 
-        // =========================
-        // University
-        // =========================
-
-        /*
-          API يرجع:
-
-          universityId: 3
-
-          نخزن 3 مباشرة.
-
-          لا نحتاج نحوله إلى string.
-        */
 
         setUniversityId(
           typeof data.university === "number" ? data.university : 0,
         );
 
-        // =========================
-        // Governorate
-        // =========================
-
         setGovernorateId(
           typeof data.governorate === "number" ? data.governorate : 1,
         );
 
-        // =========================
-        // Shift
-        // =========================
-
         setShift(typeof data.shift === "number" ? data.shift : 0);
-
-        // =========================
-        // Areas
-        // =========================
-
-        /*
-          ممكن الـ API يرجع:
-
-          area: ["الجادرية", "السيدية"]
-
-          أو:
-
-          area: [1, 2]
-
-          بالنهاية نريد:
-
-          areas = [1, 2]
-
-          حتى نرسلها للـ API كـ number[]
-        */
 
         const apiAreas = data.area ?? [];
 
         if (Array.isArray(apiAreas)) {
           const convertedAreas = apiAreas
             .map((area) => {
-              // إذا API يرجع ID
               if (typeof area === "number") {
                 return area;
               }
 
-              // إذا API يرجع اسم المنطقة
               if (typeof area === "string") {
                 const foundArea = mockAreas.find((item) => item.name === area);
 
@@ -223,10 +145,6 @@ export default function EditPostPage() {
     loadProfile();
   }, []);
 
-  // =========================
-  // Toggle Area
-  // =========================
-
   const toggleArea = (areaId: number) => {
     setAreas((current) => {
       if (current.includes(areaId)) {
@@ -237,16 +155,9 @@ export default function EditPostPage() {
     });
   };
 
-  // =========================
-  // Submit
-  // =========================
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // =========================
-    // Validation
-    // =========================
 
     if (!nameCar.trim()) {
       alert("يرجى إدخال اسم السيارة");
@@ -271,9 +182,6 @@ export default function EditPostPage() {
     try {
       setSaving(true);
 
-      // =========================
-      // البيانات التي سترسل للـ API
-      // =========================
 
       console.log("UPDATE DATA:", {
         nameCar,
@@ -284,17 +192,7 @@ export default function EditPostPage() {
         description,
       });
 
-      /*
-        هنا:
-
-        universityId => number
-        governorateId => number
-        areas => number[]
-        shift => number
-        nameCar => string
-        description => string
-      */
-
+  
       await updatePost(
         nameCar,
         description,
@@ -316,9 +214,6 @@ export default function EditPostPage() {
     }
   };
 
-  // =========================
-  // Loading
-  // =========================
 
   if (loading) {
     return (
@@ -330,9 +225,7 @@ export default function EditPostPage() {
     );
   }
 
-  // =========================
-  // Error
-  // =========================
+
 
   if (error) {
     return (
@@ -344,26 +237,20 @@ export default function EditPostPage() {
     );
   }
 
-  // =========================
-  // JSX
-  // =========================
+
 
   return (
     <main className="min-h-screen bg-[#EFE1D1] p-4 sm:p-8">
       <div className="mx-auto max-w-3xl">
         <div className="rounded-3xl bg-[#432E1A] p-6 shadow-xl sm:p-8">
-          {/* =========================
-              Header
-          ========================= */}
+       
 
           <h1 className="text-3xl font-bold text-[#EFE1D1]" dir="rtl">تعديل المنشور</h1>
 
           <p className="mt-2 text-[#EFE1D1]/60" dir="rtl">قم بتعديل معلومات الرحلة</p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-            {/* =========================
-                Car
-            ========================= */}
+           
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
@@ -380,9 +267,7 @@ export default function EditPostPage() {
               />
             </div>
 
-            {/* =========================
-                Description
-            ========================= */}
+          
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
@@ -398,11 +283,8 @@ export default function EditPostPage() {
               />
             </div>
 
-            {/* =========================
-                University
-            ========================= */}
-
-            <div>
+        
+                   <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
                 الجامعة
               </label>
@@ -435,9 +317,6 @@ export default function EditPostPage() {
              
             </div>
 
-            {/* =========================
-                Governorate
-            ========================= */}
 
             <div dir="rtl">
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
@@ -453,9 +332,7 @@ export default function EditPostPage() {
               </p>
             </div>
 
-            {/* =========================
-                Shift
-            ========================= */}
+         
 
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
@@ -474,10 +351,7 @@ export default function EditPostPage() {
               </select>
             </div>
 
-            {/* =========================
-                Areas
-            ========================= */}
-
+            
             <div>
               <label className="mb-3 block text-sm text-[#EFE1D1]/70" dir="rtl">
                 مناطق المرور
@@ -513,9 +387,6 @@ export default function EditPostPage() {
               )}
             </div>
 
-            {/* =========================
-                Buttons
-            ========================= */}
 
             <div className="flex flex-col gap-3 pt-4 sm:flex-row" dir="rtl">
               <button

@@ -3,8 +3,8 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getProfile } from "../../auth/Post/postApi";
-import { GetProfileDto } from "../../auth/Post/postDto";
+import { getProfile } from "../../auth/post/postApi";
+import { GetProfileDto } from "../../auth/post/postDto";
 
 import Loading from "./components/Loading";
 
@@ -85,18 +85,15 @@ export default function ProfilePage() {
 
       <div className="mx-auto max-w-5xl">
 
-        {/* Profile */}
         <ProfileHeader
           post={post}
           userId={id}
         />
 
-        {/* No Post */}
         {!hasPost && post.role==2 && (
           <NoPost userId={id}  />
         )}
 
-        {/* Post */}
         {hasPost && post.role==2 && (
           <div>
 
