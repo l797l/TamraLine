@@ -106,7 +106,7 @@ export default function Posts() {
 
 
   return (
-    <div className="mx-auto max-w-6xl my-10">
+    <div className="mx-auto max-w-6xl my-10 px-2">
 
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-[#432E1A]">

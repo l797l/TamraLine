@@ -1,6 +1,6 @@
 "use client";
 
-import CardPost from "./../../../components/Ui/Post/CardPost";
+import CardPost from "./CardPost";
 import { Post } from "../postTypes";
 
 type PostsListProps = {
