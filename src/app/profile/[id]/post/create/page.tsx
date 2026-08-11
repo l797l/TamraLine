@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { createPost } from "../../../../auth/Post/postApi";
+import { createPost } from "../../../../auth/post/postApi";
 
 
 
