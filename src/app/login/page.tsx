@@ -43,7 +43,13 @@ export default function Login() {
     };
     checkDataEmpty();
   }, [phone, password]);
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
 
+    if (userId !== null && userId !== "") {
+      router.push(`/profile/${userId}`);
+    }
+  }, [router]);
   const handleSubmit = async () => {
     setLoading(true);
     const data = {
@@ -55,8 +61,11 @@ export default function Login() {
     if (result == null) return;
     if (result < 206) {
       const userId = localStorage.getItem("userId");
-      if (userId != null) router.push(`/profile/${userId}`);
-      else {
+      if (userId !== null) {
+        window.dispatchEvent(new Event("auth-change"));
+
+        router.push(`/profile/${userId}`);
+      } else {
         console.log("userId is null");
       }
     } else {

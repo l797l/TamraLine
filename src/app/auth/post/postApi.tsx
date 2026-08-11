@@ -1,11 +1,109 @@
-import React from 'react'
-import Api from "../axios"
-async function  postApi() {
-  const result = await Api.post("Post/GetAllPost" , {
-    pageNumber : 1,
-    pageSize:5
-})
-return result.data 
+import api from "../axios";
+import { GetProfileDto } from "./postDto";
+
+export async function postApi(page:number) {
+  const result = await api.post("Post/GetAllPost", {
+    pageNumber: page,
+    pageSize: 5,
+  });
+
+  return result.data;
 }
 
-export default postApi
+export async function getProfile(): Promise<GetProfileDto> {
+  const response = await api.get("Post/GetProfile");
+
+  return response.data;
+}
+
+export async function createPost(
+  formFile: File,
+  universityId: number,
+  governorateId: number,
+  areas: number[],
+  nameCar: string,
+  shift: number,
+  desciption: string
+) {
+  const formData = new FormData();
+
+  formData.append("formFile", formFile);
+  formData.append("UniversityId", universityId.toString());
+  formData.append("GovernorateId", governorateId.toString());
+
+  areas.forEach((areaId, index) => {
+    formData.append(
+      `Area[${index}]`,
+      areaId.toString()
+    );
+  });
+
+  formData.append("NameCar", nameCar);
+  formData.append("Shift", shift.toString());
+  formData.append("Desciption", desciption);
+
+  const response = await api.post(
+    "Post/CreatePost",
+    formData
+  );
+
+  return response.data;
+}
+
+
+export async function updatePostImage(
+  formFile: File
+) {
+  const formData = new FormData();
+
+  formData.append("formFile", formFile);
+
+  const response = await api.put(
+    `Post/UpdateImage`,
+    formData
+  );
+
+  return response.data;
+}
+
+
+export async function updatePost(
+  nameCar: string,
+  desciption: string,
+  universityId: number,
+  governorateId: number,
+  areas: number[],
+  shift: number
+) {
+  const data = {
+    nameCar,
+    desciption,
+    universityId,
+    governorateId,
+    area: areas,
+    shift,
+  };
+
+  const response = await api.put("Post/UpdatePost", data);
+
+  return response.data;
+}
+export async function PostFilter(
+  pageNumber: number,
+  pageSize: number,
+  area: number,
+  universityId: number,
+  governorateId: number,
+  shift: number
+) {
+  const result = await api.post("Post/GetFillteredPost", {
+    pageNumber,
+    pageSize,
+    area,
+    universityId,
+    governorateId,
+    shift,
+  });
+
+  return result.data;
+}

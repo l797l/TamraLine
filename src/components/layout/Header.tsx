@@ -1,14 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextInHeader from "./../Ui/Header/TextInHeader";
 import ButtonInHeader from "./../Ui/Header/ButtonInHeader";
 import Image from "next/image";
 import Link from "next/link";
+import { setToken } from "@/src/app/auth/auth";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [login, setLogin] = useState(false);
+  const router = useRouter()
+  useEffect(() => {
+    const checkLogin = () => {
+      const token = localStorage.getItem("userId");
+      setLogin(!!token);
+    };
+    checkLogin();
 
+     window.addEventListener("auth-change", checkLogin);
+
+    return () => {
+      window.removeEventListener("auth-change", checkLogin);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    setToken("");
+    localStorage.removeItem("userId");
+
+    setLogin(false);
+    setOpen(false);
+
+    router.push("/login");
+  };
   return (
     <header className="relative bg-[#432E1A] text-white px-4 md:px-8 py-4">
       <div className="flex items-center justify-between">
@@ -38,7 +64,7 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
-          <TextInHeader text="كيف الاستخدام" toLink="/Usage" />
+          <TextInHeader text="الرحلات" toLink="/Posts" />
           <TextInHeader text="الدعم" toLink="/Support" />
           <TextInHeader text="عن الفريق" toLink="/About" />
           <TextInHeader text="الرئيسية" toLink="/" />
@@ -46,15 +72,30 @@ export default function Header() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <Link href="/login">
-            <ButtonInHeader
-              text="تسجيل الدخول"
-              className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
-            />
-          </Link>
-          <Link href="/register">
-            <ButtonInHeader text="إنشاء حساب" />
-          </Link>
+          {!login ? (
+            <>
+              <Link href="/login">
+                <ButtonInHeader
+                  text="تسجيل الدخول"
+                  className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
+                />
+              </Link>
+
+              <Link href="/register">
+                <ButtonInHeader text="إنشاء حساب" />
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/profile/${}">
+                <ButtonInHeader text="الملف الشخصي" />
+              </Link>
+                <ButtonInHeader
+                  text="تسجيل الخروج"
+                  onClick={handleLogout}
+                />
+            </>
+          )}
         </div>
 
         {/* Mobile Button */}
@@ -90,8 +131,8 @@ export default function Header() {
         "
         >
           <TextInHeader
-            text="كيفية الاستخدام"
-            toLink="/Usage"
+            text="الرحلات"
+            toLink="/Posts"
             onClick={() => setOpen(false)}
           />
 
@@ -112,18 +153,38 @@ export default function Header() {
             toLink="/"
             onClick={() => setOpen(false)}
           />
+          {!login ? (
+            <div className="flex flex-col items-center gap-4">
+              <Link href="/login">
+                <ButtonInHeader
+                  onClick={() => setOpen(false)}
+                  text="تسجيل الدخول"
+                  className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
+                />
+              </Link>
 
-          <Link href="/login">
-            <ButtonInHeader
-              onClick={() => setOpen(false)}
-              text="تسجيل الدخول"
-              className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
-            />
-          </Link>
+              <Link href="/register">
+                <ButtonInHeader
+                  text="إنشاء حساب"
+                  onClick={() => setOpen(false)}
+                />
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-4">
+              <Link href="/profile/${}">
+                <ButtonInHeader
+                  text="الملف الشخصي"
+                  onClick={() => setOpen(false)}
+                />
+              </Link>
 
-          <Link href="/register">
-            <ButtonInHeader text="إنشاء حساب" onClick={() => setOpen(false)} />
-          </Link>
+                <ButtonInHeader
+                  text="تسجيل الخروج"
+                  onClick={handleLogout}
+                />
+            </div>
+          )}
         </div>
       )}
     </header>

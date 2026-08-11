@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./../components/layout/Header";
 import Footer from "./../components/layout/Footer";
+import { cookies } from "next/headers";
+
 
 
 const geistSans = Geist({
@@ -40,11 +42,14 @@ export const metadata: Metadata = {
 },
 };
 
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    
+  
   return (
     <html
       lang="ar"
@@ -57,7 +62,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#EFE1D1]">
-        <Header />
+        <Header  />
         {children}
         <Footer />
       </body>

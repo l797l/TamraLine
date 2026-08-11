@@ -1,0 +1,543 @@
+"use client";
+
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import { getProfile, updatePost } from "../../../../auth/Post/postApi";
+
+import { GetProfileDto } from "../../../../auth/Post/postDto";
+
+// =========================
+// Areas
+// =========================
+
+const mockAreas = [
+  {
+    id: 1,
+    name: "الجادرية",
+  },
+  {
+    id: 2,
+    name: "السيدية",
+  },
+  {
+    id: 3,
+    name: "المنصور",
+  },
+  {
+    id: 4,
+    name: "الكرادة",
+  },
+];
+
+// =========================
+// Universities
+// =========================
+
+const mockUniversities = [
+  {
+    id: 1,
+    name: "جامعة بغداد - الجادرية",
+  },
+  {
+    id: 2,
+    name: "جامعة بغداد - باب المعظم",
+  },
+  {
+    id: 3,
+    name: "الجامعة المستنصرية",
+  },
+  {
+    id: 4,
+    name: "جامعة النهرين",
+  },
+  {
+    id: 5,
+    name: "الجامعة العراقية",
+  },
+  {
+    id: 6,
+    name: "جامعة التكنولوجيا",
+  },
+];
+
+// =========================
+// Page
+// =========================
+
+export default function EditPostPage() {
+  const params = useParams();
+  const router = useRouter();
+
+  const id = params.id as string;
+
+  // =========================
+  // Profile
+  // =========================
+
+  const [post, setPost] = useState<GetProfileDto | null>(null);
+
+  // =========================
+  // Form
+  // =========================
+
+  const [nameCar, setNameCar] = useState("");
+
+  const [description, setDescription] = useState("");
+
+  // مهم جداً:
+  // universityId رقم وليس string
+  const [universityId, setUniversityId] = useState<number>(0);
+
+  const [shift, setShift] = useState<number>(0);
+
+  const [governorateId, setGovernorateId] = useState<number>(1);
+
+  // IDs للمناطق
+  const [areas, setAreas] = useState<number[]>([]);
+
+  // =========================
+  // Page State
+  // =========================
+
+  const [loading, setLoading] = useState(true);
+
+  const [saving, setSaving] = useState(false);
+
+  const [error, setError] = useState("");
+
+  // =========================
+  // Get Profile
+  // =========================
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const data = await getProfile();
+
+        console.log("PROFILE DATA:", data);
+
+        setPost(data);
+
+        // =========================
+        // Name Car
+        // =========================
+
+        setNameCar(data.nameCar ?? "");
+
+        // =========================
+        // Description
+        // =========================
+
+        setDescription(data.desciption ?? "");
+
+        // =========================
+        // University
+        // =========================
+
+        /*
+          API يرجع:
+
+          universityId: 3
+
+          نخزن 3 مباشرة.
+
+          لا نحتاج نحوله إلى string.
+        */
+
+        setUniversityId(
+          typeof data.university === "number" ? data.university : 0,
+        );
+
+        // =========================
+        // Governorate
+        // =========================
+
+        setGovernorateId(
+          typeof data.governorate === "number" ? data.governorate : 1,
+        );
+
+        // =========================
+        // Shift
+        // =========================
+
+        setShift(typeof data.shift === "number" ? data.shift : 0);
+
+        // =========================
+        // Areas
+        // =========================
+
+        /*
+          ممكن الـ API يرجع:
+
+          area: ["الجادرية", "السيدية"]
+
+          أو:
+
+          area: [1, 2]
+
+          بالنهاية نريد:
+
+          areas = [1, 2]
+
+          حتى نرسلها للـ API كـ number[]
+        */
+
+        const apiAreas = data.area ?? [];
+
+        if (Array.isArray(apiAreas)) {
+          const convertedAreas = apiAreas
+            .map((area) => {
+              // إذا API يرجع ID
+              if (typeof area === "number") {
+                return area;
+              }
+
+              // إذا API يرجع اسم المنطقة
+              if (typeof area === "string") {
+                const foundArea = mockAreas.find((item) => item.name === area);
+
+                return foundArea?.id;
+              }
+
+              return undefined;
+            })
+            .filter((areaId): areaId is number => typeof areaId === "number");
+
+          setAreas(convertedAreas);
+        } else {
+          setAreas([]);
+        }
+      } catch (error) {
+        console.error("Get profile error:", error);
+
+        setError("فشل في تحميل بيانات المنشور");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfile();
+  }, []);
+
+  // =========================
+  // Toggle Area
+  // =========================
+
+  const toggleArea = (areaId: number) => {
+    setAreas((current) => {
+      if (current.includes(areaId)) {
+        return current.filter((id) => id !== areaId);
+      }
+
+      return [...current, areaId];
+    });
+  };
+
+  // =========================
+  // Submit
+  // =========================
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // =========================
+    // Validation
+    // =========================
+
+    if (!nameCar.trim()) {
+      alert("يرجى إدخال اسم السيارة");
+      return;
+    }
+
+    if (!description.trim()) {
+      alert("يرجى إدخال وصف الرحلة");
+      return;
+    }
+
+    if (universityId <= 0) {
+      alert("يرجى اختيار الجامعة");
+      return;
+    }
+
+    if (areas.length === 0) {
+      alert("يرجى اختيار منطقة واحدة على الأقل");
+      return;
+    }
+
+    try {
+      setSaving(true);
+
+      // =========================
+      // البيانات التي سترسل للـ API
+      // =========================
+
+      console.log("UPDATE DATA:", {
+        nameCar,
+        universityId,
+        governorateId,
+        areas,
+        shift,
+        description,
+      });
+
+      /*
+        هنا:
+
+        universityId => number
+        governorateId => number
+        areas => number[]
+        shift => number
+        nameCar => string
+        description => string
+      */
+
+      await updatePost(
+        nameCar,
+        description,
+        universityId,
+        governorateId,
+        areas,
+        shift,
+      );
+
+      alert("تم تعديل المنشور بنجاح");
+
+      router.push(`/profile/${id}`);
+    } catch (error) {
+      console.error("Update post error:", error);
+
+      alert("حدث خطأ أثناء تعديل المنشور");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // =========================
+  // Loading
+  // =========================
+
+  if (loading) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#EFE1D1]">
+        <div className="text-xl font-bold text-[#432E1A]">
+          جاري تحميل بيانات المنشور...
+        </div>
+      </main>
+    );
+  }
+
+  // =========================
+  // Error
+  // =========================
+
+  if (error) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#EFE1D1]">
+        <div className="rounded-2xl bg-red-100 px-6 py-4 font-bold text-red-700">
+          {error}
+        </div>
+      </main>
+    );
+  }
+
+  // =========================
+  // JSX
+  // =========================
+
+  return (
+    <main className="min-h-screen bg-[#EFE1D1] p-4 sm:p-8">
+      <div className="mx-auto max-w-3xl">
+        <div className="rounded-3xl bg-[#432E1A] p-6 shadow-xl sm:p-8">
+          {/* =========================
+              Header
+          ========================= */}
+
+          <h1 className="text-3xl font-bold text-[#EFE1D1]" dir="rtl">تعديل المنشور</h1>
+
+          <p className="mt-2 text-[#EFE1D1]/60" dir="rtl">قم بتعديل معلومات الرحلة</p>
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            {/* =========================
+                Car
+            ========================= */}
+
+            <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                اسم السيارة
+              </label>
+
+              <input
+              dir="rtl"
+                type="text"
+                value={nameCar}
+                onChange={(e) => setNameCar(e.target.value)}
+                placeholder="مثال: تويوتا كورولا 2022"
+                className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none placeholder:text-[#EFE1D1]/40 focus:ring-2 focus:ring-[#EFE1D1]"
+              />
+            </div>
+
+            {/* =========================
+                Description
+            ========================= */}
+
+            <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                وصف الرحلة
+              </label>
+
+              <textarea dir="rtl"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={5}
+                placeholder="اكتب تفاصيل الرحلة..."
+                className="w-full resize-none rounded-2xl bg-[#5B3F22] px-4 py-3 leading-7 text-[#EFE1D1] outline-none placeholder:text-[#EFE1D1]/40 focus:ring-2 focus:ring-[#EFE1D1]"
+              />
+            </div>
+
+            {/* =========================
+                University
+            ========================= */}
+
+            <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                الجامعة
+              </label>
+
+              <select
+              dir="rtl"
+                value={universityId}
+                onChange={(e) => {
+                  const value = Number(e.target.value);
+
+                  setUniversityId(value);
+                }}
+                className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
+              >
+                <option value={0} className="bg-[#5B3F22]" dir="rtl">
+                  اختر الجامعة
+                </option>
+
+                {mockUniversities.map((university) => (
+                  <option
+                    key={university.id}
+                    value={university.id}
+                    className="bg-[#5B3F22]"
+                  >
+                    {university.name}
+                  </option>
+                ))}
+              </select>
+
+             
+            </div>
+
+            {/* =========================
+                Governorate
+            ========================= */}
+
+            <div dir="rtl">
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70">
+                المحافظة
+              </label>
+
+              <div className="rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1]/60">
+                بغداد
+              </div>
+
+              <p className="mt-2 text-xs text-[#EFE1D1]/40" dir="rtl">
+                المحافظة لا يمكن تعديلها بالوقت الحالي
+              </p>
+            </div>
+
+            {/* =========================
+                Shift
+            ========================= */}
+
+            <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                الدوام
+              </label>
+
+              <select
+              dir="rtl"
+                value={shift}
+                onChange={(e) => setShift(Number(e.target.value))}
+                className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
+              >
+                <option value={0}>صباحي</option>
+
+                <option value={1}>مسائي</option>
+              </select>
+            </div>
+
+            {/* =========================
+                Areas
+            ========================= */}
+
+            <div>
+              <label className="mb-3 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                مناطق المرور
+              </label>
+
+              <div className="flex flex-wrap gap-3" dir="rtl">
+                {mockAreas.map((area) => {
+                  const selected = areas.includes(area.id);
+
+                  return (
+                    <button
+                      key={area.id}
+                      type="button"
+                      onClick={() => toggleArea(area.id)}
+                      className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+                        selected
+                          ? "bg-[#EFE1D1] text-[#432E1A]"
+                          : "bg-[#5B3F22] text-[#EFE1D1] hover:bg-[#6B4A2A]"
+                      }`}
+                    >
+                      {selected ? "✓ " : ""}
+
+                      {area.name}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {areas.length > 0 && (
+                <p className="mt-3 text-sm text-[#EFE1D1]/50" dir="rtl">
+                  تم اختيار {areas.length} منطقة
+                </p>
+              )}
+            </div>
+
+            {/* =========================
+                Buttons
+            ========================= */}
+
+            <div className="flex flex-col gap-3 pt-4 sm:flex-row" dir="rtl">
+              <button
+                type="submit"
+                disabled={saving}
+                className="flex-1 rounded-2xl bg-[#EFE1D1] px-6 py-3 font-bold text-[#432E1A] transition hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {saving ? "جاري الحفظ..." : "حفظ التعديلات"}
+              </button>
+
+              <button
+                type="button"
+                disabled={saving}
+                onClick={() => router.back()}
+                className="flex-1 rounded-2xl bg-[#5B3F22] px-6 py-3 font-bold text-[#EFE1D1] transition hover:bg-[#6B4A2A] disabled:opacity-50"
+              >
+                إلغاء
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+}
