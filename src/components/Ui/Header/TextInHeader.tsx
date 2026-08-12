@@ -1,9 +1,12 @@
+import Link from "next/link";
+
 type TextInHeaderProps = {
   text: string;
   className?: string;
   active?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  toLink: string
 };
 
 export default function TextInHeader({
@@ -12,8 +15,10 @@ export default function TextInHeader({
   active = false,
   disabled = false,
   onClick,
+  toLink
 }: TextInHeaderProps) {
   return (
+   <Link  href={toLink}>
     <p
       onClick={!disabled ? onClick : undefined}
       className={`
@@ -51,5 +56,6 @@ export default function TextInHeader({
     >
       {text}
     </p>
+    </Link>
   );
 }

@@ -38,9 +38,10 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
-          <TextInHeader text="عن الفريق" />
-          <TextInHeader text="كيفية الاستخدام" />
-          <TextInHeader text="الدعم" />
+          <TextInHeader text="كيف الاستخدام" toLink="/Usage" />
+          <TextInHeader text="الدعم" toLink="/Support" />
+          <TextInHeader text="عن الفريق" toLink="/About" />
+          <TextInHeader text="الرئيسية" toLink="/" />
         </nav>
 
         {/* Desktop Buttons */}
@@ -88,19 +89,40 @@ export default function Header() {
           py-5
         "
         >
-          <TextInHeader text="عن الفريق" />
-          <TextInHeader text="كيفية الاستخدام" />
-          <TextInHeader text="الدعم" />
+          <TextInHeader
+            text="كيفية الاستخدام"
+            toLink="/Usage"
+            onClick={() => setOpen(false)}
+          />
 
-         <Link href="/login">
-              <ButtonInHeader onClick={() => setOpen(false)}
-                text="تسجيل الدخول"
-                className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
-              />
+          <TextInHeader
+            text="الدعم"
+            toLink="/Support"
+            onClick={() => setOpen(false)}
+          />
+
+          <TextInHeader
+            text="عن الفريق"
+            toLink="/About"
+            onClick={() => setOpen(false)}
+          />
+
+          <TextInHeader
+            text="الرئيسية"
+            toLink="/"
+            onClick={() => setOpen(false)}
+          />
+
+          <Link href="/login">
+            <ButtonInHeader
+              onClick={() => setOpen(false)}
+              text="تسجيل الدخول"
+              className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
+            />
           </Link>
-          
+
           <Link href="/register">
-              <ButtonInHeader text="إنشاء حساب" onClick={() => setOpen(false)}/>
+            <ButtonInHeader text="إنشاء حساب" onClick={() => setOpen(false)} />
           </Link>
         </div>
       )}
