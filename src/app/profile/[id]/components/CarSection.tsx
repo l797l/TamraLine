@@ -8,11 +8,14 @@ import StatusBadge from "./StatusBadge";
 type CarSectionProps = {
   post: GetProfileDto;
   userId: string;
+  isUser: boolean
+
 };
 
 export default function CarSection({
   post,
   userId,
+  isUser
 }: CarSectionProps) {
   return (
     <div className="mt-6 overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl">
@@ -28,14 +31,14 @@ export default function CarSection({
           className="object-cover"
         />
 
-        {/* Status */}
-
+      {isUser &&
         <div className="absolute right-5 top-5">
           <StatusBadge status={post.status} />
         </div>
+      }
 
-        {/* Edit Image */}
-
+      
+      {isUser&&
         <div className="absolute bottom-5 left-5">
           <Link
             href={`/profile/${userId}/post/edit/image`}
@@ -44,7 +47,7 @@ export default function CarSection({
             📷 تعديل الصورة
           </Link>
         </div>
-
+          }
       </div>
 
 
@@ -62,10 +65,12 @@ export default function CarSection({
           </h2>
 
         </div>
+          {isUser&&
 
         <EditButton
           href={`/profile/${userId}/post/edit?section=car`}
         />
+          }
 
       </div>
 

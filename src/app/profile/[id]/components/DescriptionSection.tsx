@@ -4,11 +4,15 @@ import EditButton from "./EditButton";
 type DescriptionSectionProps = {
   post: GetProfileDto;
   userId: string;
+  isUser: boolean
+
 };
 
 export default function DescriptionSection({
   post,
   userId,
+  isUser
+  
 }: DescriptionSectionProps) {
 
   return (
@@ -20,10 +24,11 @@ export default function DescriptionSection({
           نبذة عن الرحلة
         </p>
 
-
+      {isUser&&
         <EditButton
           href={`/profile/${userId}/post/edit?section=description`}
         />
+        }
 
       </div>
 

@@ -6,11 +6,14 @@ import EditButton from "./EditButton";
 type ProfileHeaderProps = {
   post: GetProfileDto;
   userId: string;
+   isUser: boolean
+
 };
 
 export default function ProfileHeader({
   post,
   userId,
+  isUser
 }: ProfileHeaderProps) {
 
   const profileImage =
@@ -79,6 +82,7 @@ export default function ProfileHeader({
         </div>
 
 
+        {isUser&&
 
         <div className="mt-6 flex justify-center">
 
@@ -89,6 +93,7 @@ export default function ProfileHeader({
           </EditButton>
 
         </div>
+          } 
 
       </div>
 

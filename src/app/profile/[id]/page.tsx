@@ -14,6 +14,7 @@ import CarSection from "./components/CarSection";
 import DescriptionSection from "./components/DescriptionSection";
 import InformationSection from "./components/InformationSection";
 import AreasSection from "./components/AreasSection";
+import WhatAppSection from "./components/WhatAppSection";
 
 export default function ProfilePage() {
   const params = useParams();
@@ -22,14 +23,18 @@ export default function ProfilePage() {
   const [post, setPost] = useState<GetProfileDto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isUserId, setIsUserId] = useState(false);
+
 
   useEffect(() => {
     const loadProfile = async () => {
+      const userId = localStorage.getItem("userId")
+      setIsUserId(id == userId) 
       try {
         setLoading(true);
         setError("");
 
-        const data = await getProfile();
+        const data = await getProfile(id);
 
         setPost(data);
       } catch (error) {
@@ -88,7 +93,14 @@ export default function ProfilePage() {
         <ProfileHeader
           post={post}
           userId={id}
+          isUser={isUserId}
         />
+        {post.phoneNumber && !isUserId &&(
+         <WhatAppSection 
+         phoneNumber={post.phoneNumber}
+         />
+        )}
+
 
         {!hasPost && post.role==2 && (
           <NoPost userId={id}  />
@@ -100,21 +112,29 @@ export default function ProfilePage() {
             <CarSection
               post={post}
               userId={id}
+              isUser={isUserId}
+
             />
 
             <DescriptionSection
               post={post}
               userId={id}
+              isUser={isUserId}
+
             />
 
             <InformationSection
               post={post}
               userId={id}
+              isUser={isUserId}
+
             />
 
             <AreasSection
               post={post}
               userId={id}
+              isUser={isUserId}
+
             />
 
           </div>

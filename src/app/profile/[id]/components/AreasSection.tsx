@@ -4,11 +4,13 @@ import EditButton from "./EditButton";
 type AreasSectionProps = {
   post: GetProfileDto;
   userId: string;
+  isUser: boolean;
 };
 
 export default function AreasSection({
   post,
   userId,
+  isUser
 }: AreasSectionProps) {
 
   return (
@@ -20,10 +22,12 @@ export default function AreasSection({
           مناطق المرور
         </p>
 
-
+        {isUser &&
         <EditButton
           href={`/profile/${userId}/post/edit?section=areas`}
         />
+        }
+        
 
       </div>
 

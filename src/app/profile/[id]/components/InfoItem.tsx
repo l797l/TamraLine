@@ -4,12 +4,15 @@ type InfoItemProps = {
   title: string;
   value: React.ReactNode;
   editHref?: string;
+   isUser: boolean
+
 };
 
 export default function InfoItem({
   title,
   value,
   editHref,
+  isUser
 }: InfoItemProps) {
   return (
     <div className="rounded-2xl bg-[#5B3F22] p-4">
@@ -28,7 +31,7 @@ export default function InfoItem({
 
         </div>
 
-        {editHref && (
+        {editHref && isUser&& (
           <EditButton
             href={editHref}
             small

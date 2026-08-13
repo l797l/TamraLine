@@ -11,11 +11,16 @@ import { useRouter } from "next/navigation";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
+  const [userId , setUserId] = useState("")
   const router = useRouter()
   useEffect(() => {
+
     const checkLogin = () => {
+       localStorage.getItem("userId");
       const token = localStorage.getItem("userId");
       setLogin(!!token);
+      if(token)
+      setUserId(token)
     };
     checkLogin();
 
@@ -87,7 +92,7 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link href="/profile/${}">
+              <Link href={`/profile/${userId}`}>
                 <ButtonInHeader text="الملف الشخصي" />
               </Link>
                 <ButtonInHeader
@@ -172,7 +177,7 @@ export default function Header() {
             </div>
           ) : (
             <div className="flex flex-col items-center gap-4">
-              <Link href="/profile/${}">
+              <Link href={`/profile/${userId}`}>
                 <ButtonInHeader
                   text="الملف الشخصي"
                   onClick={() => setOpen(false)}

@@ -4,11 +4,14 @@ import InfoItem from "./InfoItem";
 type InformationSectionProps = {
   post: GetProfileDto;
   userId: string;
+   isUser: boolean
+
 };
 
 export default function InformationSection({
   post,
   userId,
+  isUser
 }: InformationSectionProps) {
 
   return (
@@ -26,6 +29,8 @@ export default function InformationSection({
           title="الجامعة"
           value={post.university || "غير محددة"}
           editHref={`/profile/${userId}/post/edit?section=university`}
+          isUser={isUser}
+
         />
 
 
@@ -34,6 +39,7 @@ export default function InformationSection({
           title="المحافظة"
           value={post.governorate || "غير محددة"}
           editHref={`/profile/${userId}/post/edit?section=governorate`}
+          isUser={isUser}
         />
 
 
@@ -48,16 +54,21 @@ export default function InformationSection({
                 : "غير محدد"
           }
           editHref={`/profile/${userId}/post/edit?section=shift`}
+          isUser={isUser}
+
         />
 
 
 
         <InfoItem
-          title="رقم الهاتف"
+          title="رقم الهاتف"  
+          isUser={isUser}
+
           value={
             <a
               href={`tel:${post.phoneNumber}`}
               className="transition hover:text-white"
+
             >
               {post.phoneNumber}
             </a>
@@ -66,15 +77,19 @@ export default function InformationSection({
         />
 
 
-
+        {isUser&&
         <InfoItem
           title="رقم الحساب"
+          isUser={isUser}
+
           value={
             <span className="break-all">
               {userId}
             </span>
+            
           }
         />
+        }
 
       </div>
 

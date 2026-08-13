@@ -10,8 +10,8 @@ export async function postApi(page:number) {
   return result.data;
 }
 
-export async function getProfile(): Promise<GetProfileDto> {
-  const response = await api.get("Post/GetProfile");
+export async function getProfile(id:string): Promise<GetProfileDto> {
+  const response = await api.get(`Post/GetProfile/${id}`);
 
   return response.data;
 }
