@@ -222,6 +222,20 @@ export default function Register() {
            dataEmpty={dataEmpty}
           
         />
+          <div className="flex flex-col items-center gap-3" dir="rtl">
+  
+
+            <p className="text-sm text-gray-600">
+              هل لديك حساب؟{" "}
+              <button
+                type="button"
+                onClick={() => router.push("/login")}
+                className="text-[#432E1A] font-bold hover:underline cursor-pointer"
+              >
+                تسجيل دخول
+              </button>
+            </p>
+        </div>
       </div>
     </main>
   );

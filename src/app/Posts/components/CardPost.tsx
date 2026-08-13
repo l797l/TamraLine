@@ -1,7 +1,9 @@
-
+import Link from "next/link";
 import Image from "next/image";
 
 type Post = {
+  id: number;
+  userId: number;
   urlImagePost: string;
   nameCar: string;
   area: string[];
@@ -20,186 +22,178 @@ type CardPostProps = {
 
 export default function CardPost({ post }: CardPostProps) {
   return (
-    <div
+    <Link
+      href={`/profile/${post.userId}`}
       dir="rtl"
-      className="w-full overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl"
+      className="group block w-full rounded-3xl bg-[#432E1A] p-4 text-[#EFE1D1] shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-5"
     >
+      <div className="grid gap-4 lg:grid-cols-[1.2fr_1.5fr_0.8fr] lg:items-stretch">
 
-     
+        <div className="rounded-2xl bg-[#5B3F22] p-5">
 
-      <div className="relative h-56 w-full sm:h-72">
+          <div className="flex items-center gap-4">
 
-        <Image
-          src={post.urlImagePost || "/headerLogo.png"}
-          alt={post.nameCar}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 768px"
-        />
+            <Image
+              src="/default-avatar.png"
+              alt={post.fullName}
+              width={72}
+              height={72}
+              className="h-[72px] w-[72px] shrink-0 rounded-full border-2 border-[#EFE1D1]/20 object-cover"
+            />
 
-        {/* Overlay */}
+            <div className="min-w-0">
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <p className="text-xs text-[#EFE1D1]/50">
+                السائق
+              </p>
 
-        {/* Car Name */}
+              <h2 className="mt-1 truncate text-xl font-bold">
+                {post.fullName}
+              </h2>
 
-        <div className="absolute bottom-4 right-4 left-4">
-          <div className="rounded-2xl bg-black/40 px-4 py-3 text-right backdrop-blur-sm">
+              <div className="mt-2 flex items-center gap-2">
 
-            <p className="text-xs text-white/70">
-              السيارة
-            </p>
+                <span
+                  className={`h-2.5 w-2.5 rounded-full ${
+                    post.status === 1
+                      ? "bg-green-400"
+                      : "bg-red-400"
+                  }`}
+                />
 
-            <h2 className="mt-1 text-xl font-bold text-white sm:text-2xl">
-              {post.nameCar}
-            </h2>
+                <span className="text-xs text-[#EFE1D1]/70">
+                  {post.status === 1 ? "متاح حالياً" : "غير متاح"}
+                </span>
+
+              </div>
+
+            </div>
 
           </div>
-        </div>
 
-      </div>
-
-
-      <div className="p-5 text-right text-[#EFE1D1] sm:p-7">
-
-       
-
-        <div className="mb-5 rounded-2xl bg-[#5B3F22] p-4">
-
-          <p className="text-xs text-[#EFE1D1]/50">
-            السائق
-          </p>
-
-          <p className="mt-1 text-lg font-bold">
-            {post.fullName}
-          </p>
-
-        </div>
-
-
-      
-
-        <div className="mb-5 rounded-2xl bg-[#5B3F22] p-4">
-
-          <p className="mb-2 text-sm text-[#EFE1D1]/60">
-            وصف الرحلة
-          </p>
-
-          <p className="text-sm leading-7 text-[#EFE1D1]/90">
-            {post.desciption}
-          </p>
-
-        </div>
-
-
-
-        <div className="grid grid-cols-2 gap-3">
-
-
-          <div className="rounded-2xl bg-[#5B3F22] p-4">
+          <div className="mt-5 rounded-xl bg-[#EFE1D1]/5 p-3">
 
             <p className="text-xs text-[#EFE1D1]/50">
               الجامعة
             </p>
 
-            <p className="mt-1 text-sm font-semibold leading-6">
+            <p className="mt-1 font-semibold">
               {post.university}
             </p>
 
           </div>
 
+        </div>
 
+        <div className="rounded-2xl bg-[#5B3F22] p-5">
 
-          <div className="rounded-2xl bg-[#5B3F22] p-4">
+          <div className="mb-4">
 
             <p className="text-xs text-[#EFE1D1]/50">
-              المحافظة
+              وصف الرحلة
             </p>
 
-            <p className="mt-1 text-sm font-semibold">
-              {post.governorate}
+            <p className="mt-2 line-clamp-2 text-sm leading-7 text-[#EFE1D1]/90">
+              {post.desciption}
             </p>
 
           </div>
 
+          <div className="grid grid-cols-2 gap-3">
 
+            <div className="rounded-xl bg-[#EFE1D1]/5 p-3">
 
-          <div className="rounded-2xl bg-[#5B3F22] p-4">
+              <p className="text-xs text-[#EFE1D1]/45">
+                المحافظة
+              </p>
 
-            <p className="text-xs text-[#EFE1D1]/50">
-              الدوام
-            </p>
+              <p className="mt-1 text-sm font-semibold">
+                {post.governorate}
+              </p>
 
-            <p className="mt-1 text-sm font-semibold">
-              {post.shift === 0 ? "صباحي" : "مسائي"}
-            </p>
+            </div>
 
-          </div>
+            <div className="rounded-xl bg-[#EFE1D1]/5 p-3">
 
+              <p className="text-xs text-[#EFE1D1]/45">
+                الدوام
+              </p>
 
+              <p className="mt-1 text-sm font-semibold">
+                {post.shift === 0 ? "صباحي" : "مسائي"}
+              </p>
 
-          <div className="rounded-2xl bg-[#5B3F22] p-4">
+            </div>
 
-            <p className="text-xs text-[#EFE1D1]/50">
-              السيارة
-            </p>
+            <div className="rounded-xl bg-[#EFE1D1]/5 p-3">
 
-            <p className="mt-1 text-sm font-semibold">
-              {post.nameCar}
-            </p>
+              <p className="text-xs text-[#EFE1D1]/45">
+                السيارة
+              </p>
+
+              <p className="mt-1 text-sm font-semibold">
+                {post.nameCar}
+              </p>
+
+            </div>
+
+            <div className="rounded-xl bg-[#EFE1D1]/5 p-3">
+
+              <p className="text-xs text-[#EFE1D1]/45">
+                مناطق المرور
+              </p>
+
+              <div className="mt-1 flex flex-wrap gap-1">
+
+                {post.area?.slice(0, 2).map((item, index) => (
+                  <span
+                    key={`${item}-${index}`}
+                    className="text-xs font-semibold"
+                  >
+                    {item}
+                    {index < Math.min(post.area.length, 2) - 1 && "،"}
+                  </span>
+                ))}
+
+                {post.area && post.area.length > 2 && (
+                  <span className="text-xs text-[#D9B98C]">
+                    +{post.area.length - 2}
+                  </span>
+                )}
+
+              </div>
+
+            </div>
 
           </div>
 
         </div>
 
+        <div className="flex flex-col justify-between rounded-2xl bg-[#5B3F22] p-5">
 
-       
+          <div className="text-center">
 
-        <div className="mt-5 rounded-2xl bg-[#5B3F22] p-4">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EFE1D1]/10 text-2xl">
+              👤
+            </div>
 
-          <p className="mb-3 text-sm text-[#EFE1D1]/60">
-            مناطق المرور
-          </p>
+            <p className="mt-3 text-sm font-bold">
+              ملف السائق
+            </p>
 
-          <div className="flex flex-wrap gap-2">
-
-            {post.area?.map((item, index) => (
-              <span
-                key={`${item}-${index}`}
-                className="rounded-full bg-[#EFE1D1]/10 px-3 py-1.5 text-xs"
-              >
-                {item}
-              </span>
-            ))}
+            <p className="mt-2 text-xs leading-6 text-[#EFE1D1]/50">
+              شاهد معلومات السائق وتفاصيله
+            </p>
 
           </div>
 
-        </div>
-
-
-      
-
-        <div className="mt-5">
-
-          <a
-            href={`https://wa.me/964${post.phoneNumber.replace(/^0/, "")}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-5 py-4 text-sm font-bold text-white transition active:scale-[0.98] hover:bg-[#1ebe5d]"
-          >
-
-            <i className="fa-brands fa-whatsapp text-2xl" />
-
-            <span>
-              تواصل عبر واتساب
-            </span>
-
-          </a>
+          <div className="mt-5 rounded-xl bg-[#EFE1D1] px-4 py-3 text-center text-sm font-bold text-[#432E1A] transition group-hover:bg-white">
+            عرض الملف الشخصي
+          </div>
 
         </div>
 
       </div>
-
-    </div>
+    </Link>
   );
 }

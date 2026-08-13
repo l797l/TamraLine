@@ -72,3 +72,13 @@ export const loginApi = async (dto: LoginDto) => {
   }
       throw error;
   }}
+
+
+  export const UpdatePasswordApi= async(phoneNumber:string,password:string)=>{
+    const result = await api.patch("User/ForgotPassword", {
+      phoneNumber,
+      password
+    })
+    return result
+    
+  }

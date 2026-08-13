@@ -125,7 +125,28 @@ export default function Login() {
           onClick={handleSubmit}
           dataEmpty={dataEmpty}
         />
-      </div>
+        
+      <div className="flex flex-col items-center gap-3" dir="rtl">
+        <button
+          type="button"
+          onClick={() => router.push("/forgot-password")}
+          className="text-sm text-[#432E1A] hover:underline cursor-pointer"
+        >
+          هل نسيت كلمة السر؟
+        </button>
+
+        <p className="text-sm text-gray-600">
+          ليس لديك حساب؟{" "}
+          <button
+            type="button"
+            onClick={() => router.push("/register")}
+            className="text-[#432E1A] font-bold hover:underline cursor-pointer"
+          >
+            إنشاء حساب
+          </button>
+        </p>
+      </div>    
+    </div>
     </main>
   );
 }
