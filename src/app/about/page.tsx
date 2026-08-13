@@ -1,276 +1,277 @@
+import Image from "next/image";
+
 export default function About() {
   const team = [
     {
-      name: "Ali Abd-Almahdi",
-      role: "Full Stack Developer",
-      description:
-        "القائد والمسؤول عن تطوير المشروع والمسؤول أيضًا عن Backend.",
-    },
-    {
-      name: "Sajad Moayd",
-      role: "Frontend Developer",
-      description:
-        "مسؤول عن تصميم الصفحات وتطوير واجهة المستخدم وتجربة الاستخدام.",
-    },
-    {
       name: "Abdullah Anas",
       role: "Frontend Developer",
-      description:
-        "مسؤول عن تصميم الصفحات وتطوير واجهة المستخدم وتجربة الاستخدام.",
+      image: "/headerLogo.png",
     },
     {
-      name: "Fahad Loay",
-      role: "Marketing",
-      description: "مسؤول عن التسويق والتعريف بالمشروع.",
+      name: "Ali A. Aziz",
+      role: "Software Engineer",
+      image: "/AliMahdi.png",
+    },
+    {
+      name: "Sajad Mouid",
+      role: "UI/UX Designer",
+      image: "/headerLogo.png",
+    },
+  ];
+
+  const features = [
+    {
+      title: "سهولة العثور على الخطوط",
+      description:
+        "يساعد تمرا لاين الطلاب على العثور على خطوط النقل المناسبة لهم بالقرب من مناطق سكنهم وبما يتناسب مع موقع جامعتهم.",
+      icon: "🚌",
+    },
+    {
+      title: "توفير الوقت والجهد",
+      description:
+        "بدلاً من البحث بين الطلاب والسائقين أو السؤال عن الخطوط المتوفرة، يستطيع الطالب الوصول إلى المعلومات التي يحتاجها بسهولة.",
+      icon: "⏱️",
+    },
+    {
+      title: "معرفة تفاصيل الرحلة",
+      description:
+        "يوفر الموقع معلومات تساعد الطالب على معرفة تفاصيل الخط، مساره، وأهم المعلومات المتعلقة بالرحلة قبل الاشتراك بها.",
+      icon: "📍",
+    },
+    {
+      title: "تجربة مخصصة للطلاب",
+      description:
+        "تم تصميم المنصة لتكون بسيطة وسهلة الاستخدام، مع التركيز على احتياجات طلاب الجامعات وطريقة تنقلهم اليومية.",
+      icon: "🎓",
+    },
+    {
+      title: "ربط الطلاب بالسائقين",
+      description:
+        "يسعى تمرا لاين إلى بناء حلقة وصل بين الطلاب وأصحاب خطوط النقل لتسهيل عملية الوصول إلى الخط المناسب.",
+      icon: "🤝",
+    },
+    {
+      title: "تنظيم عملية النقل",
+      description:
+        "يساعد الموقع على جعل عملية البحث عن وسائل النقل الجامعي أكثر تنظيماً ووضوحاً بدلاً من الاعتماد على الطرق التقليدية.",
+      icon: "📋",
     },
   ];
 
   return (
-    <main className="min-h-screen bg-[#F8F5F0] px-6 py-16 text-gray-800">
+    <div
+      dir="rtl"
+      className="min-h-screen bg-[#EFE1D1] px-4 py-12"
+    >
+      <div className="mx-auto max-w-6xl">
 
-      {/* Hero Section */}
-      <section className="mx-auto max-w-5xl text-center">
-
-        <span className="inline-block rounded-full bg-[#E8DED0] px-5 py-2 text-sm font-semibold text-[#432E1A]">
-          من نحن
-        </span>
-
-        <h1 className="mt-5 text-4xl font-extrabold text-[#2D2118] md:text-6xl">
-          نسهّل طريقك إلى الجامعة
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-9 text-gray-600">
-          نحن فريق من طلاب علوم الحاسوب نعمل على تطوير منصة تساعد الطلاب
-          على إيجاد وتنظيم خطوط النقل من المنزل إلى الجامعة بطريقة سهلة
-          وسريعة ومنظمة.
-        </p>
-
-      </section>
-
-      {/* Idea & Goal */}
-      <section className="mx-auto mt-20 max-w-6xl">
-
-        <div className="grid gap-8 md:grid-cols-2">
-
-          {/* Idea */}
-          <div
-            dir="rtl"
-            className="group rounded-3xl border border-[#E8DED0] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
-          >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#432E1A] text-2xl">
-              💡
-            </div>
-
-            <h2 className="mb-4 text-2xl font-bold text-[#2D2118]">
-              فكرتنا
-            </h2>
-
-            <p className="leading-8 text-gray-600">
-              جاءت فكرة المشروع بسبب حاجة الكثير من الطلاب إلى وسيلة نقل
-              منظمة تساعدهم على الوصول إلى الجامعة والعودة إلى المنزل بسهولة،
-              دون الحاجة إلى البحث بشكل مستمر عن خطوط نقل مناسبة.
-            </p>
-          </div>
-
-          {/* Goal */}
-          <div
-            dir="rtl"
-            className="group rounded-3xl border border-[#D6E4E8] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
-          >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#527D8B] text-2xl">
-              🎯
-            </div>
-
-            <h2 className="mb-4 text-2xl font-bold text-[#2D2118]">
-              هدفنا
-            </h2>
-
-            <p className="leading-8 text-gray-600">
-              هدفنا هو إنشاء منصة تجمع الطلاب مع خطوط النقل وتوفر لهم
-              المعلومات التي يحتاجونها مثل المنطقة، الجامعة، وقت الانطلاق
-              والعودة، مما يجعل عملية التنقل أكثر سهولة وتنظيمًا.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="mx-auto mt-24 max-w-6xl text-center">
-
-        <span className="text-sm font-bold text-[#527D8B]">
-          خدماتنا
-        </span>
-
-        <h2 className="mt-2 text-3xl font-extrabold text-[#2D2118] md:text-4xl">
-          ماذا نقدم؟
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-          نوفر لك الأدوات التي تحتاجها للوصول إلى خط النقل المناسب بسهولة.
-        </p>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-
-          {/* Card 1 */}
-          <div className="group rounded-3xl border border-gray-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E8DED0] text-3xl transition duration-300 group-hover:scale-110">
-              📍
-            </div>
-
-            <h3 className="mb-3 text-xl font-bold text-[#2D2118]">
-              تحديد المنطقة
-            </h3>
-
-            <p className="text-sm leading-7 text-gray-600">
-              العثور على خطوط النقل التي تمر بالقرب من منطقة سكنك.
-            </p>
-
-          </div>
-
-          {/* Card 2 */}
-          <div className="group rounded-3xl border border-gray-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#D6E4E8] text-3xl transition duration-300 group-hover:scale-110">
-              🎓
-            </div>
-
-            <h3 className="mb-3 text-xl font-bold text-[#2D2118]">
-              اختيار الجامعة
-            </h3>
-
-            <p className="text-sm leading-7 text-gray-600">
-              البحث عن خطوط النقل المتجهة إلى جامعتك.
-            </p>
-
-          </div>
-
-          {/* Card 3 */}
-          <div className="group rounded-3xl border border-gray-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E8DED0] text-3xl transition duration-300 group-hover:scale-110">
-              🕐
-            </div>
-
-            <h3 className="mb-3 text-xl font-bold text-[#2D2118]">
-              أوقات الرحلات
-            </h3>
-
-            <p className="text-sm leading-7 text-gray-600">
-              معرفة أوقات الذهاب والعودة الخاصة بكل خط.
-            </p>
-
-          </div>
-
-          {/* Card 4 */}
-          <div className="group rounded-3xl border border-gray-100 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#D6E4E8] text-3xl transition duration-300 group-hover:scale-110">
-              📞
-            </div>
-
-            <h3 className="mb-3 text-xl font-bold text-[#2D2118]">
-              سهولة التواصل
-            </h3>
-
-            <p className="text-sm leading-7 text-gray-600">
-              تسهيل التواصل بين الطلاب ومسؤولي خطوط النقل.
-            </p>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="mx-auto mt-24 max-w-6xl">
-
+        {/* Hero */}
         <div className="mb-12 text-center">
+          <h1 className="text-4xl font-bold text-[#432E1A] md:text-5xl">
+            من نحن
+          </h1>
 
-          <span className="text-sm font-bold text-[#527D8B]">
-            فريق العمل
-          </span>
-
-          <h2 className="mt-2 text-3xl font-extrabold text-[#2D2118] md:text-4xl">
-            تعرف على فريقنا
-          </h2>
-
-          <p className="mt-4 text-gray-600">
-            مجموعة من الطلاب يعملون معًا لبناء وتطوير المشروع.
+          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#432E1A]/70">
+            تمرا لاين هو موقع إلكتروني يهدف إلى تسهيل عملية نقل طلاب
+            الجامعات، من خلال توفير منصة تساعد الطالب على العثور على
+            خطوط النقل المناسبة له ومعرفة تفاصيلها بطريقة سهلة وسريعة.
           </p>
-
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* About */}
+        <section className="rounded-3xl bg-[#432E1A] p-7 text-[#EFE1D1] shadow-xl md:p-10">
 
-          {team.map((member) => (
-            <div
-              key={member.name}
-              className="group rounded-3xl border border-gray-100 bg-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-3 hover:shadow-2xl"
-            >
+          <div className="grid gap-10 md:grid-cols-2 md:items-center">
 
-              {/* Avatar */}
-              <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#432E1A] to-[#76583D] text-4xl shadow-lg transition duration-300 group-hover:scale-110">
-                👨‍💻
-              </div>
-
-              <h3 className="text-xl font-bold text-[#2D2118]">
-                {member.name}
-              </h3>
-
-              <span className="mt-2 inline-block rounded-full bg-[#E8DED0] px-4 py-1 text-sm font-semibold text-[#432E1A]">
-                {member.role}
+            <div>
+              <span className="text-sm font-semibold text-[#D9B98C]">
+                عن تمرا لاين
               </span>
 
-              <p
-                dir="rtl"
-                className="mt-5 leading-7 text-gray-600"
-              >
-                {member.description}
+              <h2 className="mt-3 text-3xl font-bold">
+                نجعل رحلة الطالب إلى الجامعة أسهل
+              </h2>
+
+              <p className="mt-5 leading-8 text-[#EFE1D1]/80">
+                يواجه الكثير من طلاب الجامعات صعوبة في العثور على خطوط
+                نقل مناسبة لمناطق سكنهم ومواعيد دوامهم الجامعي. وفي
+                كثير من الأحيان يعتمد الطالب على سؤال زملائه أو البحث
+                بشكل عشوائي عن خط مناسب.
               </p>
 
-            </div>
-          ))}
-
-        </div>
-      </section>
-
-      {/* Vision */}
-      <section className="mx-auto mt-24 max-w-5xl">
-
-        <div
-          dir="rtl"
-          className="relative overflow-hidden rounded-[2rem] bg-[#432E1A] px-8 py-14 text-center text-white shadow-2xl md:px-16"
-        >
-
-          {/* Decorative circles */}
-          <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-white/10"></div>
-          <div className="absolute -bottom-24 -left-20 h-56 w-56 rounded-full bg-white/10"></div>
-
-          <div className="relative">
-
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 text-3xl">
-              🚀
+              <p className="mt-4 leading-8 text-[#EFE1D1]/80">
+                من هنا جاءت فكرة تمرا لاين، حيث نعمل على توفير منصة
+                تجمع المعلومات المتعلقة بخطوط النقل وتساعد الطالب على
+                الوصول إلى الخيارات المتاحة بسهولة، مما يوفر عليه
+                الوقت والجهد ويجعل عملية البحث عن وسيلة النقل أكثر
+                وضوحاً وتنظيماً.
+              </p>
             </div>
 
-            <h2 className="mb-5 text-3xl font-extrabold md:text-4xl">
-              رؤيتنا
+            <div className="rounded-3xl bg-[#5B3F22] p-8 text-center">
+              <div className="text-7xl">🎓</div>
+
+              <h3 className="mt-5 text-2xl font-bold">
+                للطلاب... وبأيدي الطلاب
+              </h3>
+
+              <p className="mt-4 leading-7 text-[#EFE1D1]/70">
+                صُمم تمرا لاين ليكون حلاً عملياً لمشكلة يومية يواجهها
+                طلاب الجامعات، مع التركيز على البساطة وسهولة الوصول
+                إلى المعلومات.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Problem */}
+        <section className="mt-10 rounded-3xl bg-white/40 p-7 md:p-10">
+
+          <div className="text-right">
+            <span className="text-sm font-semibold text-[#8B5E34]">
+              المشكلة التي نعمل على حلها
+            </span>
+
+            <h2 className="mt-2 text-3xl font-bold text-[#432E1A]">
+              لماذا تم إنشاء تمرا لاين؟
             </h2>
 
-            <p className="mx-auto max-w-3xl text-lg leading-9 text-[#F5EEE6]">
-              نطمح إلى تطوير منصة متكاملة تجعل عملية نقل الطلاب أكثر تنظيمًا
-              وسهولة، وتساعد الطلاب على الوصول إلى جامعاتهم بأمان وراحة،
-              مع إمكانية توسيع المشروع ليشمل المزيد من الجامعات والمناطق
-              مستقبلًا.
+            <p className="mt-4 max-w-4xl leading-8 text-[#432E1A]/70">
+              البحث عن خط نقل مناسب قد يكون أمراً متعباً للطالب، خصوصاً
+              عند الانتقال إلى جامعة جديدة أو السكن في منطقة بعيدة.
+              لذلك نهدف إلى جمع هذه المعلومات في مكان واحد، بحيث يستطيع
+              الطالب البحث عن الخط المناسب بدلاً من الاعتماد على
+              الطرق التقليدية في البحث.
+            </p>
+          </div>
+
+        </section>
+
+        {/* Features */}
+        <section className="mt-10">
+
+          <div className="mb-7 text-right">
+            <span className="text-sm font-semibold text-[#8B5E34]">
+              ماذا نقدم؟
+            </span>
+
+            <h2 className="mt-2 text-3xl font-bold text-[#432E1A]">
+              مميزات تمرا لاين
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-3xl bg-[#432E1A] p-6 text-[#EFE1D1] shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#5B3F22] text-2xl">
+                  {feature.icon}
+                </div>
+
+                <h3 className="mt-5 text-xl font-bold">
+                  {feature.title}
+                </h3>
+
+                <p className="mt-3 leading-7 text-[#EFE1D1]/70">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        {/* Vision */}
+        <section className="mt-10 rounded-3xl bg-[#5B3F22] p-8 text-center text-[#EFE1D1] shadow-xl md:p-12">
+
+          <div className="mx-auto max-w-3xl">
+
+            <span className="text-sm font-semibold text-[#D9B98C]">
+              رؤيتنا
+            </span>
+
+            <h2 className="mt-3 text-3xl font-bold">
+              نقل جامعي أسهل وأكثر تنظيماً
+            </h2>
+
+            <p className="mt-5 leading-8 text-[#EFE1D1]/80">
+              نطمح إلى أن يصبح تمرا لاين منصة يعتمد عليها طلاب
+              الجامعات للعثور على خطوط النقل المناسبة لهم، وأن نساهم
+              في تحسين تجربة التنقل اليومية للطالب من خلال التقنية
+              وتوفير المعلومات بطريقة بسيطة وسهلة الوصول.
             </p>
 
           </div>
+        </section>
 
-        </div>
+        {/* Team */}
+        <section className="mt-12">
 
-      </section>
+          <div className="mb-7 text-right">
+            <span className="text-sm font-semibold text-[#8B5E34]">
+              فريقنا
+            </span>
 
-    </main>
+            <h2 className="mt-2 text-3xl font-bold text-[#432E1A]">
+              الفريق الذي يقف خلف تمرا لاين
+            </h2>
+
+            <p className="mt-3 text-[#432E1A]/70">
+              فريق يعمل على تطوير المنصة وتحسين تجربة المستخدم
+              لتقديم حل عملي يخدم طلاب الجامعات.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+            {team.map((member) => (
+              <div
+                key={member.name}
+                className="rounded-3xl bg-[#432E1A] p-6 text-center text-[#EFE1D1] shadow-lg transition duration-300 hover:-translate-y-1"
+              >
+
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={128}
+                  height={128}
+                  className="mx-auto h-32 w-32 rounded-full border-4 border-[#EFE1D1] object-cover"
+                />
+
+                <h3 className="mt-5 text-xl font-bold">
+                  {member.name}
+                </h3>
+
+                <p className="mt-2 text-sm text-[#EFE1D1]/70">
+                  {member.role}
+                </p>
+
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="mt-12 text-center">
+
+          <h2 className="text-3xl font-bold text-[#432E1A]">
+            تمرا لاين... طريقك الأسهل إلى الجامعة
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl leading-7 text-[#432E1A]/70">
+            نؤمن أن الوصول إلى الجامعة لا يجب أن يكون أمراً معقداً.
+            لذلك نعمل على جعل العثور على خط النقل المناسب أسرع وأسهل
+            لكل طالب.
+          </p>
+
+        </section>
+
+      </div>
+    </div>
   );
 }

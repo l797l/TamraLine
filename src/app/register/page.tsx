@@ -5,7 +5,6 @@ import { registerApi } from "@/src/app/auth/User/UserApi";
 
 import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
-import Link from "next/link";
 import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +14,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState(0);
+    const [gender, setGender] = useState(5);
+
   const [loading, setLoading] = useState(false);
   const [dataEmpty, setDataEmpty] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -51,7 +52,8 @@ export default function Register() {
           fullName.trim() === "" ||
           confirmPassword.trim() === "" ||
           password !== confirmPassword ||
-          role === 0
+          role === 0 ||
+          gender == 5
         ) {
           setDataEmpty(true);
         } else {
@@ -60,7 +62,7 @@ export default function Register() {
         }
       };
       checkDataEmpty();
-    }, [phone, password, confirmPassword, fullName, role]);
+    }, [phone, password, confirmPassword, fullName, role,gender]);
   const handleSubmit = async () => {
 
     setLoading(true);
@@ -75,8 +77,8 @@ export default function Register() {
       phone,
       password,
       role,
+      gender
     };
-    console.log("data:", data);
 
     const result = await registerApi(data);
     if (result == null) return;
@@ -123,7 +125,6 @@ export default function Register() {
           إنشاء حساب
         </h1>
 
-        {/* Full Name */}
         <div className="flex flex-col gap-2">
           <label className="text-right text-[#432E1A] font-semibold">
             الاسم الكامل
@@ -189,6 +190,31 @@ export default function Register() {
           </select>
         </div>
 
+        <div className="flex flex-col gap-2">
+          <label className="text-right text-[#432E1A] font-semibold">
+            حدد الجنس
+          </label>
+
+          <select
+            value={gender}
+            required
+            onChange={(e) => setGender(Number(e.target.value))}
+            className="
+              h-12
+              rounded-xl
+              bg-[#EFE1D1]
+              border
+              border-[#432E1A]
+              px-4
+              outline-none
+            "
+          >
+            <option disabled  hidden value={5}>اختار نوع الجنس</option>
+            <option value={0}>ذكر</option>
+            <option value={1}>انثى</option>
+          </select>
+        </div>
+
         <ButtonEnter
           loading={loading}
           text="إنشاء حساب"
@@ -196,6 +222,20 @@ export default function Register() {
            dataEmpty={dataEmpty}
           
         />
+          <div className="flex flex-col items-center gap-3" dir="rtl">
+  
+
+            <p className="text-sm text-gray-600">
+              هل لديك حساب؟{" "}
+              <button
+                type="button"
+                onClick={() => router.push("/login")}
+                className="text-[#432E1A] font-bold hover:underline cursor-pointer"
+              >
+                تسجيل دخول
+              </button>
+            </p>
+        </div>
       </div>
     </main>
   );

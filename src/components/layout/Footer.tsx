@@ -54,10 +54,6 @@ export default function Footer() {
                 <TextInFooter text="عن الفريق" />
               </Link>
 
-              <Link href="/how-to-use">
-                <TextInFooter text="كيفية الاستخدام" />
-              </Link>
-
               <Link href="/Posts">
                 <TextInFooter text="الرحلات" />
               </Link>

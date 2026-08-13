@@ -54,15 +54,15 @@ export default function InputPhone({ value, setValue }: InputPhoneProps) {
         `}
       >
 
-        <div className="px-3 border-l border-[#432E1A]/20">
-          <Image
-            src="/IQ-Flag.svg"
-            alt="Iraq"
-            width={28}
-            height={20}
-            className="object-contain"
-          />
-        </div>
+        <div className="shrink-0 border-l border-[#432E1A]/20 px-3">
+            <Image
+              src="/IQ-Flag.svg"
+              alt="Iraq"
+              width={28}
+              height={20}
+              className="block h-5 w-7 object-contain"
+            />
+      </div>
 
         <input
           value={value}

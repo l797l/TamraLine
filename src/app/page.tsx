@@ -9,10 +9,8 @@ export default function Home() {
       className="min-h-screen bg-[#EFE1D1] text-[#432E1A]"
     >
 
-      {/* ================= Hero ================= */}
       <section className="relative overflow-hidden px-5 py-20 sm:py-28">
 
-        {/* Background decoration */}
         <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#432E1A]/5" />
         <div className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-[#432E1A]/5" />
 
@@ -20,7 +18,6 @@ export default function Home() {
 
           <div className="grid items-center gap-12 md:grid-cols-2">
 
-            {/* Text */}
             <div className="text-center md:text-right">
 
               <div className="mb-7">
@@ -50,7 +47,6 @@ export default function Home() {
               </p>
 
 
-              {/* Main buttons */}
               <div className="mt-9 flex flex-col gap-4 sm:flex-row md:justify-start">
 
                 <Link
@@ -72,12 +68,10 @@ export default function Home() {
             </div>
 
 
-            {/* Logo */}
             <div className="flex justify-center">
 
               <div className="relative">
 
-                {/* Glow */}
                 <div className="absolute inset-0 scale-75 rounded-full bg-[#432E1A]/10 blur-3xl" />
 
                 <div className="relative flex h-72 w-72 items-center justify-center rounded-[4rem] bg-[#432E1A] p-10 shadow-2xl sm:h-80 sm:w-80">
@@ -104,7 +98,6 @@ export default function Home() {
       </section>
 
 
-      {/* ================= About ================= */}
       <section className="bg-[#432E1A] px-5 py-20 text-[#EFE1D1]">
 
         <div className="mx-auto max-w-6xl">
@@ -131,7 +124,6 @@ export default function Home() {
           </div>
 
 
-          {/* Features */}
           <div className="mt-14 grid gap-6 md:grid-cols-3">
 
             <div className="rounded-3xl bg-[#5B3F22] p-7">
@@ -194,7 +186,6 @@ export default function Home() {
       </section>
 
 
-      {/* ================= Getting Started ================= */}
       <section className="px-5 py-20">
 
         <div className="mx-auto max-w-5xl">
@@ -214,7 +205,6 @@ export default function Home() {
 
           <div className="mt-12 grid gap-5 md:grid-cols-3">
 
-            {/* Posts */}
             <Link
               href="/posts"
               className="group rounded-3xl border border-[#432E1A]/10 bg-white/40 p-7 text-center shadow-sm transition hover:-translate-y-1 hover:border-[#432E1A]/20 hover:shadow-xl"
@@ -240,9 +230,8 @@ export default function Home() {
             </Link>
 
 
-            {/* Register */}
             <Link
-              href="/auth/register"
+              href="/register"
               className="group rounded-3xl bg-[#432E1A] p-7 text-center text-[#EFE1D1] shadow-lg transition hover:-translate-y-1 hover:shadow-2xl"
             >
 
@@ -266,9 +255,8 @@ export default function Home() {
             </Link>
 
 
-            {/* Login */}
             <Link
-              href="/auth/login"
+              href="/login"
               className="group rounded-3xl border border-[#432E1A]/10 bg-white/40 p-7 text-center shadow-sm transition hover:-translate-y-1 hover:border-[#432E1A]/20 hover:shadow-xl"
             >
 
@@ -298,7 +286,6 @@ export default function Home() {
       </section>
 
 
-      {/* ================= Footer ================= */}
       <footer className=" px-5 py-8 text-center text-[#EFE1D1]">
 
 

@@ -3,7 +3,8 @@ export interface RegisterDto
     fullName : string
     phone : string,
     password:string,
-    role:number
+    role:number,
+    gender:number
 }
 
 export interface LoginDto
