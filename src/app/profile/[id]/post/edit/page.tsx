@@ -82,14 +82,19 @@ export default function EditPostPage() {
   const [saving, setSaving] = useState(false);
 
   const [error, setError] = useState("");
+    const [userId, setUserId] = useState("");
+
 
   useEffect(() => {
     const loadProfile = async () => {
+      const id = localStorage.getItem("userId")
+      if(id)
+      setUserId(id)
       try {
         setLoading(true);
         setError("");
 
-        const data = await getProfile();
+        const data = await getProfile(userId);
 
         console.log("PROFILE DATA:", data);
 
