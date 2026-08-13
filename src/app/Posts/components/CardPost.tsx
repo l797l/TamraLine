@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 
 type Post = {
-  id: number;
   userId: number;
   urlImagePost: string;
   nameCar: string;

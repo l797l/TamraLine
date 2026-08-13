@@ -1,4 +1,5 @@
 export type Post = {
+  userId: number;
   urlImagePost: string;
   nameCar: string;
   area: string[];
@@ -9,6 +10,8 @@ export type Post = {
   shift: number;
   phoneNumber: string;
   fullName: string;
+  gender: number;
+
 };
 
 export type PostsResponse = {
