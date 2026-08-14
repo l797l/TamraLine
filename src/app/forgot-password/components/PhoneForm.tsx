@@ -69,7 +69,7 @@ export default function PhoneForm({
         className="w-full bg-[#432E1A] text-white py-3 rounded-xl font-bold disabled:opacity-50 cursor-pointer"
         
       >
-        {loading? "....حار ارسال الكود" :"إرسال كود التحقق"}
+        {loading? "....جار ارسال الرمز" :"إرسال كود التحقق"}
       </button>
     </div>
   );

@@ -16,7 +16,7 @@ export default function ForgotPassword() {
   const [code, setCode] = useState("");
   const [loading,setLoading] = useState(false)
   const [messageErrorToCheck,setMessageErrorToCheck] = useState("")
-    const [messageErrorToSend,setMessageErrorToSend] = useState("")
+  const [messageErrorToSend,setMessageErrorToSend] = useState("")
 
 
   const sendCodeOtp= async()=>{
@@ -31,7 +31,10 @@ export default function ForgotPassword() {
       if(axios.isAxiosError(error))
          setMessageErrorToSend(
         error.response?.data?.message ?? "هناك خطا في الكود"
+        
       ); 
+             setStep(3)
+
         
     }finally{
        setLoading(false)
@@ -63,26 +66,7 @@ export default function ForgotPassword() {
    
   }
 
-  const UpdatePassword= async()=>{
-
-    try{
-    setLoading(true)
-   const result = await CheckOtpApi(phone,code);  
-
-    if(result.status <300)
-      setStep(4)
-   
-    }catch(error:unknown){
-      if(axios.isAxiosError(error))
- setMessageErrorToCheck(
-        error.response?.data?.message ?? "هناك خطا في الكود"
-      );    }
-    finally{
-       setLoading(false);
-
-    }
-   
-  }
+  
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#EFE1D1] px-5">
