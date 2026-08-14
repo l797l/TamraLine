@@ -309,9 +309,11 @@ setUniversityId(university?.id ?? 0);
                 onChange={(e) => setShift(Number(e.target.value))}
                 className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
               >
-                <option value={0}>صباحي</option>
+                <option value={0} hidden>اختيار الوقت</option>
 
                 <option value={1}>مسائي</option>
+                <option value={2}>صباحي</option>
+
               </select>
             </div>
 

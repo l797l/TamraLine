@@ -300,8 +300,10 @@ export default function CreatePostPage() {
                 <option
                   value={0}
                   className="bg-[#5B3F22]"
+                  hidden
+                  
                 >
-                  صباحي
+                  اختيار الوقت
                 </option>
 
                 <option
@@ -309,6 +311,12 @@ export default function CreatePostPage() {
                   className="bg-[#5B3F22]"
                 >
                   مسائي
+                </option>
+                <option
+                  value={2}
+                  className="bg-[#5B3F22]"
+                >
+                  صباحي
                 </option>
 
               </select>
