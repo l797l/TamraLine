@@ -8,13 +8,13 @@ export default function About() {
       image: "/headerLogo.png",
     },
     {
-      name: "Ali A. Aziz",
-      role: "Software Engineer",
+      name: "Ali Abdul-Mahdi Aziz",
+      role: "CEO & Software Engineer",
       image: "/AliMahdi.png",
     },
     {
-      name: "Sajad Mouid",
-      role: "UI/UX Designer",
+      name: "Sajad Moayad",
+      role: "Frontend Developer",
       image: "/headerLogo.png",
     },
   ];
@@ -78,7 +78,6 @@ export default function About() {
           </p>
         </div>
 
-        {/* About */}
         <section className="rounded-3xl bg-[#432E1A] p-7 text-[#EFE1D1] shadow-xl md:p-10">
 
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
@@ -125,7 +124,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Problem */}
+        
         <section className="mt-10 rounded-3xl bg-white/40 p-7 md:p-10">
 
           <div className="text-right">
@@ -185,7 +184,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Vision */}
         <section className="mt-10 rounded-3xl bg-[#5B3F22] p-8 text-center text-[#EFE1D1] shadow-xl md:p-12">
 
           <div className="mx-auto max-w-3xl">
@@ -256,7 +254,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Final CTA */}
         <section className="mt-12 text-center">
 
           <h2 className="text-3xl font-bold text-[#432E1A]">
