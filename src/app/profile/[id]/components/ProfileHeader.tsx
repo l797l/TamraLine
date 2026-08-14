@@ -89,7 +89,7 @@ export default function ProfileHeader({
           <EditButton
             href={`/profile/${userId}/edit?section=profile`}
           >
-            ✏️ تعديل بيانات الحساب
+             تعديل بيانات الحساب
           </EditButton>
 
         </div>

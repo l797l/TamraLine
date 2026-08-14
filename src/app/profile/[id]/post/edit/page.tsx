@@ -41,19 +41,17 @@ export default function EditPostPage() {
   const [saving, setSaving] = useState(false);
 
   const [error, setError] = useState("");
-    const [userId, setUserId] = useState("");
 
 
   useEffect(() => {
     const loadProfile = async () => {
       const id = localStorage.getItem("userId")
       if(id)
-      setUserId(id)
       try {
         setLoading(true);
         setError("");
 
-        const data = await getProfile(userId);
+        const data = await getProfile(id);
 
         console.log("PROFILE DATA:", data);
 
@@ -64,9 +62,11 @@ export default function EditPostPage() {
         setDescription(data.desciption ?? "");
 
 
-        setUniversityId(
-          typeof data.university === "number" ? data.university : 0,
-        );
+        const university = mockUniversities.find(
+        (item) => item.name === data.university
+          );
+
+setUniversityId(university?.id ?? 0);
 
         setGovernorateId(
           typeof data.governorate === "number" ? data.governorate : 1,

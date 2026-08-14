@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Camera } from "lucide-react";
 
 import { GetProfileDto } from "../../../auth/post/postDto";
 import EditButton from "./EditButton";
@@ -8,21 +9,17 @@ import StatusBadge from "./StatusBadge";
 type CarSectionProps = {
   post: GetProfileDto;
   userId: string;
-  isUser: boolean
-
+  isUser: boolean;
 };
 
 export default function CarSection({
   post,
   userId,
-  isUser
+  isUser,
 }: CarSectionProps) {
   return (
     <div className="mt-6 overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl">
-
-
       <div className="relative h-72 w-full sm:h-96" dir="rtl">
-
         <Image
           src={post.urlImagePost || "/headerLogo.png"}
           alt={post.nameCar ?? "السيارة"}
@@ -31,31 +28,30 @@ export default function CarSection({
           className="object-cover"
         />
 
-      {isUser &&
-        <div className="absolute right-5 top-5">
-          <StatusBadge status={post.status} />
-        </div>
-      }
+        {isUser && (
+          <div className="absolute right-5 top-5">
+            <StatusBadge status={post.status} />
+          </div>
+        )}
 
-      
-      {isUser&&
-        <div className="absolute bottom-5 left-5">
-          <Link
-            href={`/profile/${userId}/post/edit/image`}
-            className="rounded-xl bg-[#432E1A]/90 px-4 py-2 font-semibold text-[#EFE1D1] shadow-lg backdrop-blur-sm transition hover:bg-[#5B3F22]"
-          >
-            📷 تعديل الصورة
-          </Link>
-        </div>
-          }
+        {isUser && (
+          <div className="absolute bottom-5 left-5">
+            <Link
+              href={`/profile/${userId}/post/edit/image`}
+              className="inline-flex items-center gap-2 rounded-xl bg-[#432E1A]/90 px-4 py-2 font-semibold text-[#EFE1D1] shadow-lg backdrop-blur-sm transition hover:bg-[#5B3F22]"
+            >
+              <Camera className="h-4 w-4" />
+              تعديل الصورة
+            </Link>
+          </div>
+        )}
       </div>
 
-
-
-      <div className="flex items-center justify-between gap-4 p-6 text-[#EFE1D1]" dir="rtl">
-
+      <div
+        className="flex items-center justify-between gap-4 p-6 text-[#EFE1D1]"
+        dir="rtl"
+      >
         <div>
-
           <p className="text-sm text-[#EFE1D1]/60">
             السيارة
           </p>
@@ -63,17 +59,14 @@ export default function CarSection({
           <h2 className="mt-1 text-2xl font-bold">
             {post.nameCar || "لم يتم تحديد السيارة"}
           </h2>
-
         </div>
-          {isUser&&
 
-        <EditButton
-          href={`/profile/${userId}/post/edit?section=car`}
-        />
-          }
-
+        {isUser && (
+          <EditButton
+            href={`/profile/${userId}/post/edit?section=car`}
+          />
+        )}
       </div>
-
     </div>
   );
 }

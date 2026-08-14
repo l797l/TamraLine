@@ -30,7 +30,6 @@ export default function SupportForm() {
       createdAt: new Date().toISOString(),
     };
 
-    console.log(supportRequest);
 
     setSent(true);
     setName("");
@@ -68,6 +67,7 @@ export default function SupportForm() {
             </label>
 
             <input
+              disabled
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -83,6 +83,7 @@ export default function SupportForm() {
             </label>
 
             <input
+              disabled
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -101,6 +102,7 @@ export default function SupportForm() {
           value={type}
           onChange={(e) => setType(e.target.value)}
           className={inputClass}
+          disabled
         >
           <option value="technical">مشكلة تقنية</option>
           <option value="route">مشكلة في معلومات خط</option>
@@ -114,6 +116,7 @@ export default function SupportForm() {
         </label>
 
         <textarea
+          disabled
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="اكتب تفاصيل المشكلة أو الملاحظة هنا..."
@@ -128,11 +131,14 @@ export default function SupportForm() {
           إرسال الطلب
         </button>
 
-        {sent && (
+        {/*sent && (
           <div className="mt-4 rounded-2xl border border-green-300/20 bg-green-500/10 p-4 text-center text-sm text-green-200">
             ✓ تم استلام طلبك بنجاح، شكراً لتواصلك معنا.
           </div>
-        )}
+        )*/}
+        <div className="mt-4 rounded-2xl border border-red-300/20 bg-red-500/10 p-4 text-center text-sm text-red-200">
+             الخدمة غير متوفرة حاليا .
+          </div>
       </form>
     </section>
   );

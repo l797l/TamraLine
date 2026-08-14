@@ -15,6 +15,7 @@ import DescriptionSection from "./components/DescriptionSection";
 import InformationSection from "./components/InformationSection";
 import AreasSection from "./components/AreasSection";
 import WhatAppSection from "./components/WhatAppSection";
+import ArchivesStatus from "./components/ArchivesStatus";
 
 export default function ProfilePage() {
   const params = useParams();
@@ -98,6 +99,11 @@ export default function ProfilePage() {
         {post.phoneNumber && !isUserId &&(
          <WhatAppSection 
          phoneNumber={post.phoneNumber}
+         />
+        )}
+        {isUserId &&(
+         <ArchivesStatus 
+         status={post.status}
          />
         )}
 

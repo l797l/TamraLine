@@ -1,8 +1,10 @@
+import { GraduationCap } from "lucide-react";
+
 export default function SupportFooter() {
   return (
     <div className="mt-8 rounded-3xl bg-[#5B3F22] p-8 text-center text-[#EFE1D1] shadow-lg">
-      <div className="text-4xl">
-        🎓
+      <div className="flex justify-center text-4xl">
+        <GraduationCap className="h-10 w-10" />
       </div>
 
       <h2 className="mt-4 text-2xl font-bold">

@@ -19,7 +19,7 @@ export default function EditProfilePage() {
   useEffect(() => {
     const loadingdata = async () => {
       setLoading(true);
-
+      
       const result = await GetUser();
       setFullName(result.fullName);
       setPhoneNumber(result.phoneNumber);

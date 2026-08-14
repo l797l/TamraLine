@@ -1,5 +1,6 @@
 "use client";
 
+import { updatePost, updatePostImage } from "@/src/app/auth/post/postApi";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import {  useState } from "react";
@@ -52,24 +53,12 @@ export default function EditImagePage() {
     setLoading(true);
 
     try {
-      const formData = new FormData();
+  
 
-      formData.append("formFile", imageFile);
-
-
-
-      const response = await fetch(
-        `/api/Post/UpdateImage/${id}`,
-        {
-          method: "PUT",
-          body: formData,
-        }
-      );
+      const response = await updatePostImage(imageFile)
 
       if (!response.ok) {
-        const errorText = await response.text();
 
-        console.error("Update image error:", errorText);
 
         throw new Error(
           `فشل تحديث الصورة: ${response.status}`

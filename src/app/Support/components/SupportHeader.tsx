@@ -1,8 +1,10 @@
+import { MessageCircle } from "lucide-react";
+
 export default function SupportHeader() {
   return (
     <div className="mb-10 text-center">
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#432E1A] text-3xl shadow-lg">
-        💬
+        <MessageCircle className="h-8 w-8 text-[#EFE1D1]" />
       </div>
 
       <h1 className="mt-5 text-4xl font-bold text-[#432E1A]">

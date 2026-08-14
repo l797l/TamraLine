@@ -56,9 +56,9 @@ export async function updatePostImage(
 ) {
   const formData = new FormData();
 
-  formData.append("formFile", formFile);
+  formData.append("Image", formFile);
 
-  const response = await api.put(
+  const response = await api.patch(
     `Post/UpdateImage`,
     formData
   );
@@ -106,4 +106,9 @@ export async function PostFilter(
   });
 
   return result.data;
+}
+
+export const ChangeArchive= async()=>{
+   const result = await api.post("Post/ChangeArchive") 
+   return result.status
 }
