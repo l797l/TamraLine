@@ -1,12 +1,12 @@
 "use client";
 
-import { useState , useEffect} from "react";
-import { registerApi } from "@/src/app/auth/User/UserApi";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
+import { registerApi } from "@/src/app/auth/User/UserApi";
 import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
 import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
-import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -14,119 +14,131 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState(0);
-    const [gender, setGender] = useState(5);
+  const [gender, setGender] = useState(5);
 
   const [loading, setLoading] = useState(false);
   const [dataEmpty, setDataEmpty] = useState(true);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [errorMessageConfirm, setErrorMessageConfirm] = useState("");
+  const [serverError, setServerError] = useState("");
+
   const router = useRouter();
 
-
-
-
   useEffect(() => {
-      const checkDataEmpty = () => {
-        const hasLettersAndNumbers = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
-  
-        if (password.trim() != "" && !hasLettersAndNumbers) {
-          setErrorMessage("يجب أن تحتوي كلمة المرور على أحرف وأرقام");
-        } else {
-          if (password.trim() != "" && password.length < 8) {
-            setErrorMessage("يجب أن تكون كلمة المرور أكثر من 8 أحرف");
-          } else {
-            setErrorMessage("");
-          }
-        }
-        if (confirmPassword.trim() != "" && password !== confirmPassword) {
-          setErrorMessageConfirm("كلمة المرور غير متطابقة");
-        }
-        else {
-          setErrorMessageConfirm("");
-        }
-        if (
-          phone.length < 11 ||
-          password.trim() === "" ||
-          !hasLettersAndNumbers ||
-          password.length < 8 ||
-          fullName.trim() === "" ||
-          confirmPassword.trim() === "" ||
-          password !== confirmPassword ||
-          role === 0 ||
-          gender == 5
-        ) {
-          setDataEmpty(true);
-        } else {
-          setDataEmpty(false);
-          setErrorMessage("");
-        }
-      };
-      checkDataEmpty();
-    }, [phone, password, confirmPassword, fullName, role,gender]);
-  const handleSubmit = async () => {
+    const hasLettersAndNumbers =
+      /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
 
-    setLoading(true);
+    if (password.trim() !== "" && !hasLettersAndNumbers) {
+      setErrorMessage("يجب أن تحتوي كلمة المرور على أحرف وأرقام");
+    } else if (password.trim() !== "" && password.length < 8) {
+      setErrorMessage("يجب أن تكون كلمة المرور 8 أحرف على الأقل");
+    } else {
+      setErrorMessage("");
+    }
+
+    if (
+      confirmPassword.trim() !== "" &&
+      password !== confirmPassword
+    ) {
+      setErrorMessageConfirm("كلمة المرور غير متطابقة");
+    } else {
+      setErrorMessageConfirm("");
+    }
+
+    const isEmpty =
+      phone.length < 11 ||
+      fullName.trim() === "" ||
+      password.trim() === "" ||
+      confirmPassword.trim() === "" ||
+      !hasLettersAndNumbers ||
+      password.length < 8 ||
+      password !== confirmPassword ||
+      role === 0 ||
+      gender === 5;
+
+    setDataEmpty(isEmpty);
+  }, [
+    phone,
+    password,
+    confirmPassword,
+    fullName,
+    role,
+    gender,
+  ]);
+
+  const handleSubmit = async () => {
+    if (dataEmpty || loading) return;
+
+    setServerError("");
+
     if (password !== confirmPassword) {
-      alert("كلمة المرور غير متطابقة");
-      setLoading(false);
+      setErrorMessageConfirm("كلمة المرور غير متطابقة");
       return;
     }
 
-    const data = {
-      fullName,
-      phone,
-      password,
-      role,
-      gender
-    };
+    setLoading(true);
 
-    const result = await registerApi(data);
-    if (result == null) return;
-    if (result < 206) {
+    try {
+      const data = {
+        fullName,
+        phone,
+        password,
+        role,
+        gender,
+      };
+
+      const result = await registerApi(data);
+
+      if (result == null) {
+        setLoading(false);
+        setServerError("حدث خطأ أثناء إنشاء الحساب");
+        return;
+      }
+
+      if (result >= 200 && result < 300) {
+        setLoading(false);
         router.push("/login");
-    } else {
-      alert("حدث خطأ أثناء إنشاء الحساب");
+      } else {
+        setLoading(false);
+        setServerError("حدث خطأ أثناء إنشاء الحساب");
+      }
+    } catch (error) {
+      console.error("Register error:", error);
+      setLoading(false);
+      setServerError("حدث خطأ أثناء الاتصال بالخادم");
     }
   };
 
   return (
     <main
       className="
-      min-h-screen
-      flex
-      items-center
-      justify-center
-      bg-[#EFE1D1]
-      px-5
-      py-10
-    "
+        flex min-h-screen items-center justify-center
+        bg-[#EFE1D1] px-5 py-10
+      "
     >
       <div
         className="
-          w-full
-          max-w-md
-          bg-white
-          rounded-2xl
-          shadow-lg
-          p-8
-          flex
-          flex-col
-          gap-5
+          flex w-full max-w-md flex-col gap-5
+          rounded-2xl bg-white p-8 shadow-lg
         "
       >
         <h1
           className="
-          text-3xl
-          font-bold
-          text-center
-          text-[#432E1A]
-        "
+            text-center text-3xl font-bold
+            text-[#432E1A]
+          "
         >
           إنشاء حساب
         </h1>
 
         <div className="flex flex-col gap-2">
-          <label className="text-right text-[#432E1A] font-semibold">
+          <label
+            className="
+              text-right font-semibold
+              text-[#432E1A]
+            "
+          >
             الاسم الكامل
           </label>
 
@@ -135,18 +147,22 @@ export default function Register() {
             onChange={(e) => setFullName(e.target.value)}
             placeholder="ادخل الاسم الكامل"
             className="
-              h-12
-              rounded-xl
+              h-12 rounded-xl
+              border border-[#432E1A]
               bg-[#EFE1D1]
-              border
-              border-[#432E1A]
               px-4
+              text-right
               outline-none
+              focus:ring-2
+              focus:ring-[#8B5E34]
             "
           />
         </div>
 
-        <InputPhone value={phone} setValue={setPhone} />
+        <InputPhone
+          value={phone}
+          setValue={setPhone}
+        />
 
         <InputPassword
           value={password}
@@ -160,13 +176,17 @@ export default function Register() {
           value={confirmPassword}
           setValue={setConfirmPassword}
           title="تأكيد كلمة المرور"
-          placeholder="اعد كتابة كلمة المرور"
+          placeholder="أعد كتابة كلمة المرور"
           errorMessage={errorMessageConfirm}
         />
 
-        {/* Role */}
         <div className="flex flex-col gap-2">
-          <label className="text-right text-[#432E1A] font-semibold">
+          <label
+            className="
+              text-right font-semibold
+              text-[#432E1A]
+            "
+          >
             نوع الحساب
           </label>
 
@@ -175,23 +195,37 @@ export default function Register() {
             required
             onChange={(e) => setRole(Number(e.target.value))}
             className="
-              h-12
-              rounded-xl
+              h-12 rounded-xl
+              border border-[#432E1A]
               bg-[#EFE1D1]
-              border
-              border-[#432E1A]
               px-4
+              text-right
               outline-none
+              focus:ring-2
+              focus:ring-[#8B5E34]
             "
           >
-            <option disabled  hidden value={0}>اختار نوع الحساب</option>
-            <option value={1}>مستخدم</option>
-            <option value={2}>سائق</option>
+            <option disabled hidden value={0}>
+              اختر نوع الحساب
+            </option>
+
+            <option value={1}>
+              مستخدم
+            </option>
+
+            <option value={2}>
+              سائق
+            </option>
           </select>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-right text-[#432E1A] font-semibold">
+          <label
+            className="
+              text-right font-semibold
+              text-[#432E1A]
+            "
+          >
             حدد الجنس
           </label>
 
@@ -200,41 +234,63 @@ export default function Register() {
             required
             onChange={(e) => setGender(Number(e.target.value))}
             className="
-              h-12
-              rounded-xl
+              h-12 rounded-xl
+              border border-[#432E1A]
               bg-[#EFE1D1]
-              border
-              border-[#432E1A]
               px-4
+              text-right
               outline-none
+              focus:ring-2
+              focus:ring-[#8B5E34]
             "
           >
-            <option disabled  hidden value={5}>اختار نوع الجنس</option>
-            <option value={0}>ذكر</option>
-            <option value={1}>انثى</option>
+            <option disabled hidden value={5}>
+              اختر نوع الجنس
+            </option>
+
+            <option value={0}>
+              ذكر
+            </option>
+
+            <option value={1}>
+              أنثى
+            </option>
           </select>
         </div>
-
+          {serverError && (
+            <p className="text-center text-sm font-medium text-red-600">
+              {serverError}
+            </p>
+          )}
         <ButtonEnter
           loading={loading}
           text="إنشاء حساب"
-          onClick={ handleSubmit}
-           dataEmpty={dataEmpty}
-          
+          onClick={handleSubmit}
+          dataEmpty={dataEmpty}
         />
-          <div className="flex flex-col items-center gap-3" dir="rtl">
-  
 
-            <p className="text-sm text-gray-600">
-              هل لديك حساب؟{" "}
-              <button
-                type="button"
-                onClick={() => router.push("/login")}
-                className="text-[#432E1A] font-bold hover:underline cursor-pointer"
-              >
-                تسجيل دخول
-              </button>
-            </p>
+        <div
+          className="flex flex-col items-center gap-3"
+          dir="rtl"
+        >
+          
+
+          <p className="text-sm text-gray-600">
+            هل لديك حساب؟{" "}
+
+            <button
+              type="button"
+              onClick={() => router.push("/login")}
+              className="
+                cursor-pointer
+                font-bold
+                text-[#432E1A]
+                hover:underline
+              "
+            >
+              تسجيل دخول
+            </button>
+          </p>
         </div>
       </div>
     </main>

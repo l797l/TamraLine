@@ -59,7 +59,6 @@ export default function AdminPostsPage() {
         console.error("Get admin posts error:", error);
 
         if (!cancelled) {
-          // غير مصرح له
           if (
             error?.response?.status === 401 ||
             error?.response?.status === 403
@@ -426,7 +425,6 @@ export default function AdminPostsPage() {
 
                         </button>
 
-                        {/* Reject */}
 
                         <button
                           type="button"
