@@ -41,7 +41,6 @@ export default function PostsList({
                 <div className="mt-6 h-14 animate-pulse rounded-2xl bg-[#432E1A]/60" />
               </div>
 
-              {/* Details Skeleton */}
               <div className="rounded-[22px] bg-[#5A3D21] p-5">
                 <div className="h-3 w-24 animate-pulse rounded-full bg-[#EFE1D1]/10" />
 
@@ -60,7 +59,6 @@ export default function PostsList({
                 </div>
               </div>
 
-              {/* Button Skeleton */}
               <div className="flex flex-col justify-between rounded-[22px] bg-[#5A3D21] p-5">
                 <div>
                   <div className="h-11 w-11 animate-pulse rounded-2xl bg-[#EFE1D1]/10" />
@@ -116,7 +114,7 @@ export default function PostsList({
             الرحلات المتوفرة
           </p>
 
-          <h2 className="mt-1 text-lg font-extrabold text-[#FFF4E5]">
+          <h2 className="mt-1 text-lg font-extrabold text-[#432E1A]/60">
             اختر الرحلة المناسبة لك
           </h2>
         </div>

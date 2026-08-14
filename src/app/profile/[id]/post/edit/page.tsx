@@ -6,54 +6,13 @@ import { useEffect, useState } from "react";
 import { getProfile, updatePost } from "../../../../auth/post/postApi";
 
 import { GetProfileDto } from "../../../../auth/post/postDto";
+import { areasInf, universitiesInf } from "@/src/Information/information";
 
 
-const mockAreas = [
-  {
-    id: 1,
-    name: "الجادرية",
-  },
-  {
-    id: 2,
-    name: "السيدية",
-  },
-  {
-    id: 3,
-    name: "المنصور",
-  },
-  {
-    id: 4,
-    name: "الكرادة",
-  },
-];
+const mockAreas = areasInf
 
 
-const mockUniversities = [
-  {
-    id: 1,
-    name: "جامعة بغداد - الجادرية",
-  },
-  {
-    id: 2,
-    name: "جامعة بغداد - باب المعظم",
-  },
-  {
-    id: 3,
-    name: "الجامعة المستنصرية",
-  },
-  {
-    id: 4,
-    name: "جامعة النهرين",
-  },
-  {
-    id: 5,
-    name: "الجامعة العراقية",
-  },
-  {
-    id: 6,
-    name: "جامعة التكنولوجيا",
-  },
-];
+const mockUniversities = universitiesInf
 
 
 export default function EditPostPage() {

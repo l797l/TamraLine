@@ -47,6 +47,7 @@ export default function Posts() {
             filters.governorateId,
             filters.shift
           );
+
         }
 
         else {

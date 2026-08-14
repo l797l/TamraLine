@@ -1,5 +1,6 @@
 "use client";
 
+import { areasInf, governoratesInf, universitiesInf } from "@/src/Information/information";
 import { useState } from "react";
 
 type PostFiltersProps = {
@@ -19,23 +20,10 @@ export default function PostFilters({
   const [governorateId, setGovernorateId] = useState(0);
   const [shift, setShift] = useState(0);
 
-  const areas = [
-    { id: 1, name: "الجادرية" },
-    { id: 2, name: "السيدية" },
-    { id: 3, name: "الكرادة" },
-    { id: 4, name: "المنصور" },
-    { id: 5, name: "الأعظمية" },
-  ];
+  const areas = areasInf
 
-  const universities = [
-    { id: 1, name: "جامعة بغداد" },
-    { id: 2, name: "جامعة النهرين" },
-  ];
-
-  const governorates = [
-    { id: 1, name: "بغداد" },
-    { id: 2, name: "البصرة" },
-  ];
+  const universities = universitiesInf
+  const governorates = governoratesInf
 
   const handleSearch = () => {
     onSearch(
@@ -138,11 +126,14 @@ export default function PostFilters({
             className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
           >
             <option value={0}>
-              صباحي
+              اختيار الوقت
             </option>
 
             <option value={1}>
               مسائي
+            </option>
+            <option value={2}>
+              صباحي
             </option>
           </select>
         </div>

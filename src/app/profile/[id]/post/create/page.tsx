@@ -5,64 +5,15 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { createPost } from "../../../../auth/post/postApi";
+import { areasInf, universitiesInf } from "@/src/Information/information";
 
 
 
-const mockUniversities = [
-  {
-    id: 1,
-    name: "جامعة بغداد - الجادرية",
-  },
-  {
-    id: 2,
-    name: "جامعة بغداد - باب المعظم",
-  },
-  {
-    id: 3,
-    name: "الجامعة المستنصرية",
-  },
-  {
-    id: 4,
-    name: "جامعة النهرين",
-  },
-  {
-    id: 5,
-    name: "الجامعة العراقية",
-  },
-  {
-    id: 6,
-    name: "جامعة التكنولوجيا",
-  },
-];
+const mockUniversities = universitiesInf
 
 
 
-const mockAreas = [
-  {
-    id: 1,
-    name: "الجادرية",
-  },
-  {
-    id: 2,
-    name: "السيدية",
-  },
-  {
-    id: 3,
-    name: "المنصور",
-  },
-  {
-    id: 4,
-    name: "الكرادة",
-  },
-  {
-    id: 5,
-    name: "العامرية",
-  },
-  {
-    id: 6,
-    name: "الغزالية",
-  },
-];
+const mockAreas = areasInf
 
 
 
@@ -116,7 +67,6 @@ export default function CreatePostPage() {
 
     if (!file) return;
 
-    // السماح فقط بالصور
     if (!file.type.startsWith("image/")) {
       alert("يرجى اختيار صورة فقط");
       e.target.value = "";
