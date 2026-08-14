@@ -86,6 +86,7 @@ export default function About() {
           </p>
         </div>
 
+        {/* About */}
         <section className="rounded-3xl bg-[#432E1A] p-5 text-[#EFE1D1] shadow-xl sm:p-7 md:p-10">
           <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-10">
 
@@ -115,7 +116,9 @@ export default function About() {
             </div>
 
             <div className="rounded-3xl bg-[#5B3F22] p-6 text-center sm:p-8">
-              <GraduationCap className="mx-auto h-14 w-14 text-[#EFE1D1] sm:h-16 sm:w-16" />
+              <div className="flex justify-center">
+                <GraduationCap className="h-14 w-14 text-[#EFE1D1] sm:h-16 sm:w-16" />
+              </div>
 
               <h3 className="mt-5 text-xl font-bold sm:text-2xl">
                 للطلاب... وبأيدي الطلاب
@@ -173,15 +176,16 @@ export default function About() {
                   key={feature.title}
                   className="rounded-3xl bg-[#432E1A] p-5 text-[#EFE1D1] shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#5B3F22]">
+                  {/* Icon */}
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#5B3F22]">
                     <Icon className="h-7 w-7 text-[#EFE1D1]" />
                   </div>
 
-                  <h3 className="mt-5 text-lg font-bold sm:text-xl">
+                  <h3 className="mt-5 text-center text-lg font-bold sm:text-xl">
                     {feature.title}
                   </h3>
 
-                  <p className="mt-3 leading-7 text-[#EFE1D1]/70">
+                  <p className="mt-3 text-center leading-7 text-[#EFE1D1]/70">
                     {feature.description}
                   </p>
                 </div>
