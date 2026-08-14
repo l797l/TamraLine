@@ -96,12 +96,12 @@ export default function ProfilePage() {
           userId={id}
           isUser={isUserId}
         />
-        {post.phoneNumber && !isUserId &&(
+        {post.phoneNumber && !isUserId && post.role == 2&&(
          <WhatAppSection 
          phoneNumber={post.phoneNumber}
          />
         )}
-        {isUserId &&post.role ==2&&(
+        {isUserId &&post.role ==2&& !hasPost&&(
          <ArchivesStatus 
          status={post.status}
          />
