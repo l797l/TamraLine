@@ -91,8 +91,9 @@ export default function EditImagePage() {
 
         <div className="mb-6 text-center">
 
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#432E1A] text-4xl">
-            📷
+
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#432E1A] text-[#EFE1D1]">
+            <Camera className="h-10 w-10 text-[#EFE1D1]" strokeWidth={1.8} />
           </div>
 
           <h1 className="mt-5 text-3xl font-bold text-[#432E1A]">
@@ -120,8 +121,8 @@ export default function EditImagePage() {
                 className="object-cover"
               />
             ) : (
-              <div className="flex h-full items-center justify-center text-6xl text-[#EFE1D1]/40">
-                📷
+              <div className="flex h-full items-center justify-center text-[#EFE1D1]/40">
+                  <Camera className="text-[#EFE1D1] h-16 w-16" strokeWidth={1.5} />
               </div>
             )}
 
@@ -137,7 +138,7 @@ export default function EditImagePage() {
 
 
               <div>
-                <Camera className="h-12 w-12" />
+                <Camera className="h-12 w-12 text-[#EFE1D1]" />
               </div>
               <span className="mt-3 font-bold text-[#EFE1D1]">
                 اختيار صورة

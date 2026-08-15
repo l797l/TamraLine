@@ -387,7 +387,7 @@ export default function CreatePostPage() {
 
 
                     <div>
-                      <Camera className="h-12 w-12" />
+                      <Camera className="h-12 w-12 text-[#EFE1D1]" />
                     </div>
 
                   <p className="mt-3 font-semibold text-[#EFE1D1]">
