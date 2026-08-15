@@ -101,7 +101,7 @@ export default function ProfilePage() {
          phoneNumber={post.phoneNumber}
          />
         )}
-        {isUserId &&post.role ==2&& !hasPost&&(
+        {isUserId &&post.role ==2&& hasPost&&(
          <ArchivesStatus 
          status={post.status}
          />
