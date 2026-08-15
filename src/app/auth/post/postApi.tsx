@@ -1,13 +1,23 @@
 import api from "../axios";
 import { GetProfileDto } from "./postDto";
+import { unstable_cache } from "next/cache";
 
-export async function postApi(page:number) {
+export const postApi =  (page:number) =>{
+  unstable_cache( 
+  async()=>{
+    console.log("🔥 API CALLED - page:", page);
+
   const result = await api.post("Post/GetAllPost", {
     pageNumber: page,
     pageSize: 5,
   });
 
   return result.data;
+},
+[`AllPost_${page}`],{
+  revalidate:86400,
+  tags:["Posts"]
+  })
 }
 
 export async function getProfile(id:string): Promise<GetProfileDto> {

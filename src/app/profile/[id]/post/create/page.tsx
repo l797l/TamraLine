@@ -24,7 +24,7 @@ export default function CreatePostPage() {
 
   const id = params.id as string;
 
-  
+
 
   const [nameCar, setNameCar] = useState("");
   const [description, setDescription] = useState("");
@@ -99,7 +99,7 @@ export default function CreatePostPage() {
   ) => {
     e.preventDefault();
 
-    
+
 
     if (!nameCar.trim()) {
       alert("يرجى إدخال اسم السيارة");
@@ -229,7 +229,7 @@ export default function CreatePostPage() {
               />
             </div>
 
-    
+
             <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70">
                 الجامعة
@@ -301,7 +301,7 @@ export default function CreatePostPage() {
                 <option
                   value={0}
                   className="bg-[#5B3F22]"
-                  disabled                  
+                  disabled
                 >
                   اختيار الوقت
                 </option>
@@ -343,11 +343,10 @@ export default function CreatePostPage() {
                       onClick={() =>
                         toggleArea(area.id)
                       }
-                      className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
-                        selected
+                      className={`rounded-full px-5 py-2 text-sm font-semibold transition ${selected
                           ? "bg-[#EFE1D1] text-[#432E1A]"
                           : "bg-[#5B3F22] text-[#EFE1D1] hover:bg-[#6B4A2A]"
-                      }`}
+                        }`}
                     >
                       {selected
                         ? "✓ "
@@ -370,7 +369,7 @@ export default function CreatePostPage() {
 
             </div>
 
-          
+
 
             <div>
 
@@ -386,9 +385,9 @@ export default function CreatePostPage() {
                 >
 
 
-                    <div>
-                      <Camera className="h-12 w-12 text-[#EFE1D1]" />
-                    </div>
+                  <div>
+                    <Camera className="h-12 w-12 text-[#EFE1D1]" />
+                  </div>
 
                   <p className="mt-3 font-semibold text-[#EFE1D1]">
                     اختر صورة السيارة
@@ -439,10 +438,10 @@ export default function CreatePostPage() {
                       <p className="mt-1 text-xs text-[#EFE1D1]/50">
                         {image
                           ? `${(
-                              image.size /
-                              1024 /
-                              1024
-                            ).toFixed(2)} MB`
+                            image.size /
+                            1024 /
+                            1024
+                          ).toFixed(2)} MB`
                           : ""}
                       </p>
 
@@ -487,7 +486,7 @@ export default function CreatePostPage() {
 
             </div>
 
-       
+
 
             <div className="flex flex-col gap-3 pt-4 sm:flex-row">
 
