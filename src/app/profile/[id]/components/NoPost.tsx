@@ -1,4 +1,5 @@
 import Link from "next/link";
+    import { Car } from "lucide-react";
 
 type NoPostProps = {
   userId: string;
@@ -11,9 +12,10 @@ export default function NoPost({
   return (
     <div className="mt-6 overflow-hidden rounded-3xl bg-[#432E1A] p-8 text-center text-[#EFE1D1] shadow-xl">
 
-      <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-[#5B3F22] text-5xl">
-        🚗
-      </div>
+
+<div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-[#5B3F22]">
+  <Car className="h-12 w-12 text-white" />
+</div>
 
 
       <h2 className="mt-6 text-2xl font-bold">

@@ -16,6 +16,8 @@ import InformationSection from "./components/InformationSection";
 import AreasSection from "./components/AreasSection";
 import WhatAppSection from "./components/WhatAppSection";
 import ArchivesStatus from "./components/ArchivesStatus";
+          import { TriangleAlert } from "lucide-react";
+
 
 export default function ProfilePage() {
   const params = useParams();
@@ -58,9 +60,10 @@ export default function ProfilePage() {
       <main className="flex min-h-screen items-center justify-center bg-[#EFE1D1] p-6">
         <div className="w-full max-w-md rounded-3xl bg-[#432E1A] p-8 text-center text-[#EFE1D1] shadow-xl">
 
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#5B3F22] text-4xl">
-            ⚠️
-          </div>
+
+<div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#5B3F22]">
+<TriangleAlert className="h-10 w-10 text-yellow-400" />
+</div>
 
           <h2 className="mt-5 text-2xl font-bold">
             {error || "لم يتم العثور على البيانات"}
