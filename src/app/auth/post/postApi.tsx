@@ -1,6 +1,5 @@
 import api from "../axios";
 import { GetProfileDto } from "./postDto";
-import { unstable_cache } from "next/cache";
 
 export async function postApi(page:number) {
   

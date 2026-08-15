@@ -3,8 +3,7 @@
 
 import { useEffect, useState } from "react";
 
-import {  PostFilter } from "./../auth/post/postApi";
-import {postApi} from "./../auth/post/postCacheApi";
+import { postApi, PostFilter } from "./../auth/post/postApi";
 
 import PostFilters from "./components/PostFilters";
 import PostsList from "./components/PostsList";
