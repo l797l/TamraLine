@@ -3,7 +3,7 @@ import { GetProfileDto } from "./postDto";
 import { unstable_cache } from "next/cache";
 
 export function postApi (page:number){
-  unstable_cache( 
+   return unstable_cache( 
   async()=>{
     console.log("🔥 API CALLED - page:", page);
 
