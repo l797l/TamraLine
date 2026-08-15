@@ -2,7 +2,7 @@ import api from "../axios";
 import { GetProfileDto } from "./postDto";
 import { unstable_cache } from "next/cache";
 
-export const postApi =  (page:number) =>{
+export function postApi (page:number){
   unstable_cache( 
   async()=>{
     console.log("🔥 API CALLED - page:", page);
