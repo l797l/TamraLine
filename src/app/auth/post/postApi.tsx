@@ -1,3 +1,4 @@
+"use server";
 import api from "../axios";
 import { GetProfileDto } from "./postDto";
 import { unstable_cache } from "next/cache";
