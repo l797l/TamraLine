@@ -7,6 +7,7 @@ import { registerApi } from "@/src/app/auth/User/UserApi";
 import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
 import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
+import { setToken } from "../auth/auth";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -99,6 +100,8 @@ export default function Register() {
       if (result >= 200 && result < 300) {
         setLoading(false);
         router.push("/login");
+        setToken("");
+        localStorage.removeItem("userId");
       } else {
         setLoading(false);
         setServerError("حدث خطأ أثناء إنشاء الحساب");
