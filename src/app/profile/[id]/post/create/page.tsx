@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { createPost } from "../../../../auth/post/postApi";
 import { areasInf, universitiesInf } from "@/src/Information/information";
+import { Camera } from "lucide-react";
 
 
 
@@ -384,9 +385,10 @@ export default function CreatePostPage() {
                   className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#5B3F22] bg-[#5B3F22]/40 p-8 text-center transition hover:bg-[#5B3F22]"
                 >
 
-                  <div className="text-5xl">
-                    📷
-                  </div>
+
+                    <div>
+                      <Camera className="h-12 w-12" />
+                    </div>
 
                   <p className="mt-3 font-semibold text-[#EFE1D1]">
                     اختر صورة السيارة

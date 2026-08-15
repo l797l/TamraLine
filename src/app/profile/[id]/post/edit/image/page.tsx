@@ -1,9 +1,11 @@
 "use client";
 
-import { updatePost, updatePostImage } from "@/src/app/auth/post/postApi";
+import { updatePostImage } from "@/src/app/auth/post/postApi";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import {  useState } from "react";
+import { Camera } from "lucide-react";
+
 
 export default function EditImagePage() {
   const params = useParams();
@@ -133,10 +135,10 @@ export default function EditImagePage() {
               className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#5B3F22] p-8 text-center transition hover:bg-[#5B3F22]/50"
             >
 
-              <span className="text-4xl">
-                📷
-              </span>
 
+              <div>
+                <Camera className="h-12 w-12" />
+              </div>
               <span className="mt-3 font-bold text-[#EFE1D1]">
                 اختيار صورة
               </span>
