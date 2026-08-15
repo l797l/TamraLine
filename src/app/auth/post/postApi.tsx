@@ -17,7 +17,7 @@ export function postApi (page:number){
 [`AllPost_${page}`],{
   revalidate:86400,
   tags:["Posts"]
-  })
+  })();
 }
 
 export async function getProfile(id:string): Promise<GetProfileDto> {
