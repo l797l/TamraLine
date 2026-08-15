@@ -99,9 +99,10 @@ export default function Register() {
 
       if (result >= 200 && result < 300) {
         setLoading(false);
-        router.push("/login");
-        setToken("");
+         setToken("");
         localStorage.removeItem("userId");
+        router.push("/login");
+       
       } else {
         setLoading(false);
         setServerError("حدث خطأ أثناء إنشاء الحساب");
