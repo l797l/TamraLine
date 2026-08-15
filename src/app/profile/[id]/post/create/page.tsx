@@ -300,8 +300,7 @@ export default function CreatePostPage() {
                 <option
                   value={0}
                   className="bg-[#5B3F22]"
-                  hidden
-                  
+                  disabled                  
                 >
                   اختيار الوقت
                 </option>

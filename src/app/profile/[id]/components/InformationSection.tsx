@@ -47,7 +47,7 @@ export default function InformationSection({
         <InfoItem
           title="الدوام"
           value={
-            post.shift === 0
+            post.shift === 2
               ? "صباحي"
               : post.shift === 1
                 ? "مسائي"
