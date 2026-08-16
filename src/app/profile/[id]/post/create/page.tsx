@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { createPost } from "../../../../auth/post/postApi";
 import { areasInf, universitiesInf } from "@/src/Information/information";
 import { Camera } from "lucide-react";
+ import { CarFront } from "lucide-react";
 
 
 
@@ -175,9 +176,10 @@ export default function CreatePostPage() {
 
           <div className="text-center">
 
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#5B3F22] text-4xl">
-              🚗
-            </div>
+
+<div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#5B3F22] text-[#EFE1D1]">
+  <CarFront className="h-10 w-10" />
+</div>
 
             <h1 className="mt-5 text-3xl font-bold text-[#EFE1D1]">
               إنشاء منشور رحلة
