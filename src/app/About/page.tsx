@@ -12,7 +12,7 @@ export default function About() {
   const team = [
      {
       name: "Fahd Louay",
-      role: "Frontend Developer",
+      role: "Marketer",
       image: "/headerLogo.png",
     },
     {
@@ -22,7 +22,7 @@ export default function About() {
     },
     {
       name: "Ali Abdul-Mahdi Aziz",
-      role: "CEO & Software Engineer",
+      role: "CEO & Software Engineer & Full-Stack Develover",
       image: "/AliMahdi.png",
     },
     {
@@ -32,7 +32,7 @@ export default function About() {
     },
      {
       name: "Hussain Humdan",
-      role: "Frontend Developer",
+      role: "Marketer",
       image: "/headerLogo.png",
     },
   ];
