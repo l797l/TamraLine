@@ -10,6 +10,11 @@ import {
 
 export default function About() {
   const team = [
+     {
+      name: "Fahd Louay",
+      role: "Frontend Developer",
+      image: "/headerLogo.png",
+    },
     {
       name: "Abdullah Anas",
       role: "Frontend Developer",
@@ -22,6 +27,11 @@ export default function About() {
     },
     {
       name: "Sajad Moayad",
+      role: "Frontend Developer",
+      image: "/headerLogo.png",
+    },
+     {
+      name: "Hussain Humdan",
       role: "Frontend Developer",
       image: "/headerLogo.png",
     },
