@@ -64,9 +64,10 @@ export default function Login() {
       
       const result = await loginApi(data);
 
+      const message = result?.data.message;
       if (result == null) {
         setLoading(false);
-        setErrorMessage("رقم الهاتف أو كلمة المرور غير صحيحة");
+        setErrorMessage(message ?? "رقم الهاتف أو كلمة المرور غير صحيحة");
         return;
       }
 
@@ -78,7 +79,7 @@ export default function Login() {
           router.push(`/profile/${userId}`);
         } else {
           setLoading(false);
-        setErrorMessage("رقم الهاتف أو كلمة المرور غير صحيحة");
+        setErrorMessage(result.data.message ?? "رقم الهاتف أو كلمة المرور غير صحيحة");
         }
       } else {
         setLoading(false);
