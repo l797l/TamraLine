@@ -61,6 +61,7 @@ export default function Login() {
         password,
       };
 
+      
       const result = await loginApi(data);
 
       if (result == null) {
@@ -69,7 +70,7 @@ export default function Login() {
         return;
       }
 
-      if (result >= 200 && result < 300) {
+      if (result.status >= 200 && result.status < 300) {
         const userId = localStorage.getItem("userId");
 
         if (userId) {
@@ -82,7 +83,7 @@ export default function Login() {
       } else {
         setLoading(false);
         setPassword("");
-        setErrorMessage("رقم الهاتف أو كلمة المرور غير صحيحة");
+        setErrorMessage(result.data.message ?? "رقم الهاتف أو كلمة المرور غير صحيحة");
       }
     } catch (error) {
       console.error("Login error:", error);

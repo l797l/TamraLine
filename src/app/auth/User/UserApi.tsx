@@ -2,8 +2,6 @@ import { setToken } from "../auth";
 import api from "../axios";
 import { LoginDto, RegisterDto } from "./UserDto";
 import axios from "axios";
-import { unstable_cache } from "next/cache";
-
 
 export const loginApi = async (dto: LoginDto) => {
 
@@ -17,11 +15,10 @@ export const loginApi = async (dto: LoginDto) => {
         localStorage.setItem("userId", result.data.userId);
       }
     
-    return result.status;
+    return result;
   } catch (error: unknown) {
   if (axios.isAxiosError(error)) {
   } else {
-    console.log("حدث خطأ غير متوقع");
   }
 }
   };
