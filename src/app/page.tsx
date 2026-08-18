@@ -206,7 +206,7 @@ export default function Home() {
           <div className="mt-12 grid gap-5 md:grid-cols-3">
 
             <Link
-              href="/posts"
+              href="/Posts"
               className="group rounded-3xl border border-[#432E1A]/10 bg-white/40 p-7 text-center shadow-sm transition hover:-translate-y-1 hover:border-[#432E1A]/20 hover:shadow-xl"
             >
 
