@@ -117,5 +117,7 @@ export const areasInf = [
   { id: 59, name: "اللطيفية" },
   { id: 60, name: "النهروان" },
   { id: 61, name: "القادسية" },
+    { id: 62, name: "ابو دشير" },
+
 
 ];
