@@ -121,7 +121,4 @@ export const areasInf = [
   { id: 63, name: "حي العامل" },
   { id: 64, name: "الحسينية" },
 
-
-
-
 ];
