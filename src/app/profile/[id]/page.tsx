@@ -17,6 +17,7 @@ import AreasSection from "./components/AreasSection";
 import WhatAppSection from "./components/WhatAppSection";
 import ArchivesStatus from "./components/ArchivesStatus";
           import { TriangleAlert } from "lucide-react";
+import GoToPage from "./components/GoToPage";
 
 
 export default function ProfilePage() {
@@ -104,9 +105,15 @@ export default function ProfilePage() {
          phoneNumber={post.phoneNumber}
          />
         )}
-        {isUserId &&post.role ==2&& hasPost&&(
-         <ArchivesStatus 
-         status={post.status}
+         {post.phoneNumber && !isUserId && post.role == 2&&(
+         <WhatAppSection 
+         phoneNumber={post.phoneNumber}
+         />
+        )}
+
+        {isUserId &&post.role !=2&& (
+         <GoToPage 
+         Role={post.role}
          />
         )}
 
