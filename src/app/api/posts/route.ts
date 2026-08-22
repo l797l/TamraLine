@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   });
 
   await redis.set(key, result.data, {
-    ex: 3600,
+    ex: 86400,
   });
 
   return NextResponse.json(result.data);
