@@ -2,19 +2,10 @@ import api from "../axios";
 import { redis } from "../redis/redis";
 import { GetProfileDto } from "./postDto";
 
-export async function postApi(page:number) {
-  const data = await redis.get(`post_${page}`);
-  if (data){
-console.log("redis working");
-    return data
-  }
-  const result = await api.post("Post/GetAllPost", {
-    pageNumber: page,
-    pageSize: 5,
-  });
-  await redis.set(`post_${page}`,result.data, {ex: 86400})
-
-  return result.data;
+export async function postApi(page: number) {
+  const res = await fetch(`/api/post?page=${page}`);
+  if (!res.ok) throw new Error("Failed to fetch posts");
+  return res.json();
 }
 
 export async function getProfile(id:string): Promise<GetProfileDto> {
