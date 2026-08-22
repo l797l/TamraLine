@@ -3,9 +3,21 @@ import { redis } from "../redis/redis";
 import { GetProfileDto } from "./postDto";
 
 export async function postApi(page: number) {
-  const res = await fetch(`/api/post?page=${page}`);
-  if (!res.ok) throw new Error("Failed to fetch posts");
-  return res.json();
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ page }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch posts: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  return data;
 }
 
 export async function getProfile(id:string): Promise<GetProfileDto> {
