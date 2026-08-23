@@ -1,2 +1,21 @@
 @import "tailwindcss";
 
+/* globals.css */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EFE1D1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #432E1A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #432e1abf;
+}
