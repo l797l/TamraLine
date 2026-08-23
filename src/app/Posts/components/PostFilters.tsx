@@ -1,7 +1,7 @@
 "use client";
 
 import { areasInf, governoratesInf, universitiesInf } from "@/src/Information/information";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type PostFiltersProps = {
   onSearch: (
@@ -19,13 +19,14 @@ export default function PostFilters({
   const [universityId, setUniversityId] = useState(0);
   const [governorateId, setGovernorateId] = useState(0);
   const [shift, setShift] = useState(0);
-
+  const [isSearch,setIsSearch] = useState(true)
   const areas = areasInf
 
   const universities = universitiesInf
   const governorates = governoratesInf
 
   const handleSearch = () => {
+    setIsSearch(true)
     onSearch(
       area,
       universityId,
@@ -33,6 +34,14 @@ export default function PostFilters({
       shift
     );
   };
+
+  useEffect(()=>{
+    const change = ()=>{
+      setIsSearch(false)
+    }
+    change();
+
+  },[area,universityId,governorateId,shift,])
 
   return (
     <div
@@ -144,9 +153,10 @@ export default function PostFilters({
         <button
           type="button"
           onClick={handleSearch}
-          className="w-full rounded-xl bg-[#EFE1D1] py-3 font-bold text-[#432E1A] transition hover:bg-white"
+          className={`w-full rounded-xl ${isSearch? "bg-[#efe1d185]":"bg-[#EFE1D1]"} py-3 font-bold text-[#432E1A] transition ${isSearch? "cursor-not-allowed":"hover:bg-white cursor-pointer"} `}
+          disabled = {isSearch}
         >
-          بحث
+          {isSearch? "اختار اولا من الاعلى" : "بحث"}
         </button>
       </div>
     </div>
