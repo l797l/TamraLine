@@ -105,9 +105,9 @@ export default function ProfilePage() {
          phoneNumber={post.phoneNumber}
          />
         )}
-         {post.phoneNumber && !isUserId && post.role == 2&&(
-         <WhatAppSection 
-         phoneNumber={post.phoneNumber}
+         {post.phoneNumber && isUserId && post.role == 2 && hasPost&&(
+         <ArchivesStatus 
+         status={post.status}
          />
         )}
 
