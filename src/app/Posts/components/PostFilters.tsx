@@ -151,9 +151,12 @@ export default function PostFilters({
           </select>
         </div>
 
-      </div>
+<div>
+          <label className="mb-2 block text-[#EFE1D1]">
+            نوع السائق
+          </label>
 
-      <select
+           <select
             value={gender}
             onChange={(e) =>
               setGender(Number(e.target.value))
@@ -171,6 +174,14 @@ export default function PostFilters({
               انثى
             </option>
           </select>
+
+        </div>
+
+
+      </div>
+
+
+
         
 
       <div className="mt-5">
