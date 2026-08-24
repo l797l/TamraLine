@@ -45,7 +45,7 @@ export default function PostFilters({
     }
     change();
 
-  },[area,universityId,governorateId,shift,])
+  },[area,universityId,governorateId,shift,gender])
 
   return (
     <div
