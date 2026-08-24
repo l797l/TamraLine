@@ -320,6 +320,12 @@ export default function CreatePostPage() {
                 >
                   صباحي
                 </option>
+                <option
+                  value={3}
+                  className="bg-[#5B3F22]"
+                >
+                  صباحي - مسائي
+                </option>
 
               </select>
             </div>

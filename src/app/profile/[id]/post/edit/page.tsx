@@ -313,6 +313,10 @@ setUniversityId(university?.id ?? 0);
 
                 <option value={1}>مسائي</option>
                 <option value={2}>صباحي</option>
+                <option
+                  value={3}     >
+                  صباحي - مسائي
+                </option>
 
               </select>
             </div>
