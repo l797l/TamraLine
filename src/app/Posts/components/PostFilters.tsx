@@ -8,7 +8,8 @@ type PostFiltersProps = {
     area: number,
     universityId: number,
     governorateId: number,
-    shift: number
+    shift: number,
+    gender: number
   ) => void;
 };
 
@@ -19,6 +20,8 @@ export default function PostFilters({
   const [universityId, setUniversityId] = useState(0);
   const [governorateId, setGovernorateId] = useState(0);
   const [shift, setShift] = useState(0);
+  const [gender, setGender] = useState(0);
+
   const [isSearch,setIsSearch] = useState(true)
   const areas = areasInf
 
@@ -31,7 +34,8 @@ export default function PostFilters({
       area,
       universityId,
       governorateId,
-      shift
+      shift,
+      gender
     );
   };
 
@@ -148,6 +152,26 @@ export default function PostFilters({
         </div>
 
       </div>
+
+      <select
+            value={gender}
+            onChange={(e) =>
+              setGender(Number(e.target.value))
+            }
+            className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
+          >
+            <option value={0}>
+              اختيار نوع السائق
+            </option>
+
+            <option value={2}>
+              ذكر
+            </option>
+            <option value={1}>
+              انثى
+            </option>
+          </select>
+        
 
       <div className="mt-5">
         <button

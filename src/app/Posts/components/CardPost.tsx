@@ -29,7 +29,7 @@ type CardPostProps = {
 
 export default function CardPost({ post }: CardPostProps) {
   const driverImage =
-    post.gender === 0 ? "/DriveBoy.png" : "/DriveGirl.png";
+    post.gender === 2 ? "/DriveBoy.png" : "/DriveGirl.png";
 
   const isAvailable = true;
 

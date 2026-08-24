@@ -16,7 +16,7 @@ import InformationSection from "./components/InformationSection";
 import AreasSection from "./components/AreasSection";
 import WhatAppSection from "./components/WhatAppSection";
 import ArchivesStatus from "./components/ArchivesStatus";
-          import { TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 import GoToPage from "./components/GoToPage";
 
 
@@ -42,7 +42,6 @@ export default function ProfilePage() {
 
         setPost(data);
       } catch (error) {
-        console.error("Get profile error:", error);
         setError("فشل في تحميل بيانات المستخدم");
       } finally {
         setLoading(false);

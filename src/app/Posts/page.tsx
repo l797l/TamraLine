@@ -26,6 +26,7 @@ export default function Posts() {
     universityId: 0,
     governorateId: 0,
     shift: 0,
+    gender:0
   });
 
   const [isFiltered, setIsFiltered] = useState(false);
@@ -45,7 +46,8 @@ export default function Posts() {
             filters.area,
             filters.universityId,
             filters.governorateId,
-            filters.shift
+            filters.shift,
+            filters.gender
           );
 
         }
@@ -74,13 +76,15 @@ export default function Posts() {
     area: number,
     universityId: number,
     governorateId: number,
-    shift: number
+    shift: number,
+    gender : number
   ) => {
     setFilters({
       area,
       universityId,
       governorateId,
       shift,
+      gender,
     });
 
     setIsFiltered(true);

@@ -15,7 +15,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState(0);
-  const [gender, setGender] = useState(5);
+  const [gender, setGender] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [dataEmpty, setDataEmpty] = useState(true);
@@ -248,11 +248,11 @@ export default function Register() {
               focus:ring-[#8B5E34]
             "
           >
-            <option disabled hidden value={5}>
+            <option disabled hidden value={0}>
               اختر نوع الجنس
             </option>
 
-            <option value={0}>
+            <option value={2}>
               ذكر
             </option>
 

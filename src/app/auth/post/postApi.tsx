@@ -104,7 +104,9 @@ export async function PostFilter(
   area: number,
   universityId: number,
   governorateId: number,
-  shift: number
+  shift: number,
+  gender: number
+
 ) {
   const result = await api.post("Post/GetFillteredPost", {
     pageNumber,
@@ -113,6 +115,7 @@ export async function PostFilter(
     universityId,
     governorateId,
     shift,
+    gender,
   });
 
   return result.data;
