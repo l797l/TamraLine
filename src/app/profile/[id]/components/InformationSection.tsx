@@ -51,7 +51,7 @@ export default function InformationSection({
               ? "صباحي"
               : post.shift === 1
                 ? "مسائي"
-                : "غير محدد"
+                : "صباحي - مسائي"
           }
           editHref={`/profile/${userId}/post/edit?section=shift`}
           isUser={isUser}

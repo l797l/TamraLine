@@ -146,7 +146,7 @@ export default function CardPost({ post }: CardPostProps) {
               </div>
 
               <p className="mt-2 text-sm font-bold">
-                {post.shift === 2 ? "صباحي" : "مسائي"}
+                {post.shift === 2 ? "صباحي" :post.shift === 1 ?  "مسائي" : "صباحي - مسائي"}
               </p>
             </div>
 
