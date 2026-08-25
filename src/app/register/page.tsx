@@ -28,10 +28,10 @@ export default function Register() {
 
   useEffect(() => {
     const hasLettersAndNumbers =
-      /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
+      /^(?=.*[a-z])(?=.*\d).+$/.test(password);
 
     if (password.trim() !== "" && !hasLettersAndNumbers) {
-      setErrorMessage("يجب أن تحتوي كلمة المرور على أحرف وأرقام");
+      setErrorMessage("يجب أن تحتوي كلمة المرور على أحرف انكليزي سمول وأرقام");
     } else if (password.trim() !== "" && password.length < 8) {
       setErrorMessage("يجب أن تكون كلمة المرور 8 أحرف على الأقل");
     } else {
