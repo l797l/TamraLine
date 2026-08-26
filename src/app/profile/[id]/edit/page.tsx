@@ -21,10 +21,13 @@ export default function EditProfilePage() {
       setLoading(true);
       
       const result = await GetUser();
+      if(result == null){
+        router.replace("/404")
+        return
+      }
       setFullName(result.fullName);
       setPhoneNumber(result.phoneNumber);
       setGender(result.gender);
-
       setLoading(false);
     };
     loadingdata();

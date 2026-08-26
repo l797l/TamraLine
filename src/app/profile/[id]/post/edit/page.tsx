@@ -52,9 +52,10 @@ export default function EditPostPage() {
         setError("");
 
         const data = await getProfile(id);
-
-        console.log("PROFILE DATA:", data);
-
+         if(data == null){
+        router.replace("/404")
+        return
+      }
         setPost(data);
 
         setNameCar(data.nameCar ?? "");
