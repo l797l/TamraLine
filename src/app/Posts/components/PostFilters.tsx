@@ -21,7 +21,6 @@ export default function PostFilters({
   const [governorateId, setGovernorateId] = useState(0);
   const [shift, setShift] = useState(0);
   const [gender, setGender] = useState(0);
-
   const [isSearch,setIsSearch] = useState(true)
   const areas = areasInf
     const [part, setPart] = useState<number>(0);
@@ -197,7 +196,7 @@ export default function PostFilters({
             <option value={0} disabled hidden>
               اختيار نوع السائق
             </option>
-            <option value={0} disabled hidden>
+            <option value={0} >
               جميع السائقين
             </option>
             <option value={2}>
