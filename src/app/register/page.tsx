@@ -56,7 +56,7 @@ export default function Register() {
       password.length < 8 ||
       password !== confirmPassword ||
       role === 0 ||
-      gender === 5;
+      gender === 0;
 
     setDataEmpty(isEmpty);
   }, [
