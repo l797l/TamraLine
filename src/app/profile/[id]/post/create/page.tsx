@@ -29,6 +29,7 @@ export default function CreatePostPage() {
 
   const [nameCar, setNameCar] = useState("");
   const [description, setDescription] = useState("");
+  const [part, setPart] = useState<number>(0);
 
   const [universityId, setUniversityId] = useState<number | "">("");
 
@@ -330,6 +331,27 @@ export default function CreatePostPage() {
               </select>
             </div>
 
+            <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                التقسيم
+              </label>
+
+              <select
+              dir="rtl"
+                value={part}
+                onChange={(e) => setPart(Number(e.target.value))}
+                className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
+              >
+                <option value={0} disabled>اختيار التقسيم</option>
+                <option value={0}>الجميع</option>
+
+                <option value={1}>الكرخ</option>
+                <option value={2}>الرصافة</option>
+               
+
+              </select>
+            </div>
+
 
             <div>
 
@@ -339,7 +361,7 @@ export default function CreatePostPage() {
 
               <div className="flex flex-wrap gap-3">
 
-                {mockAreas.map((area) => {
+                {mockAreas.filter((area)=> part ==area.part || part ==0).map((area) => {
 
                   const selected =
                     areas.includes(area.id);

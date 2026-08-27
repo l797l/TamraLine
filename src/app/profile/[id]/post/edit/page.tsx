@@ -326,7 +326,7 @@ setUniversityId(university?.id ?? 0);
 
              <div>
               <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
-                الدوام
+                التقسيم
               </label>
 
               <select
