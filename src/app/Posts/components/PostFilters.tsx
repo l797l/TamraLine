@@ -69,7 +69,7 @@ export default function PostFilters({
               >
                 <option value={0} disabled hidden>اختيار التقسيم</option>
                 <option value={0} >الجميع</option>
-                <option value={1}>الكرح</option>
+                <option value={1}>الكرخ</option>
                 <option value={2}>الرصافة</option>
                
 
