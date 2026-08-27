@@ -24,9 +24,11 @@ export default function PostFilters({
 
   const [isSearch,setIsSearch] = useState(true)
   const areas = areasInf
+    const [part, setPart] = useState<number>(0);
 
   const universities = universitiesInf
   const governorates = governoratesInf
+
 
   const handleSearch = () => {
     setIsSearch(true)
@@ -54,6 +56,26 @@ export default function PostFilters({
     >
       <div className="grid gap-4 md:grid-cols-4">
 
+          <div>
+              <label className="mb-2 block text-[#EFE1D1]">
+                التقسيم
+              </label>
+
+              <select
+              dir="rtl"
+                value={part}
+                onChange={(e) => setPart(Number(e.target.value))}
+              className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
+              >
+                <option value={0} disabled hidden>اختيار التقسيم</option>
+                <option value={0} >الجميع</option>
+                <option value={1}>الكرح</option>
+                <option value={2}>الرصافة</option>
+               
+
+              </select>
+            </div>
+
         <div>
           <label className="mb-2 block text-[#EFE1D1]">
             المنطقة
@@ -66,13 +88,16 @@ export default function PostFilters({
             }
             className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
           >
-            <option value={0}>
+            <option value={0} disabled hidden >
               اختر المنطقة
             </option>
+            <option value={0} >
+              جميع المناطق
+            </option>
 
-            {areas.map((item) => (
+            {areas.filter((item) =>part == item.part || part == 0).map((item) => (
               <option key={item.id} value={item.id}>
-                {item.name}
+                { item.name}
               </option>
             ))}
           </select>
@@ -90,8 +115,11 @@ export default function PostFilters({
             }
             className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
           >
-            <option value={0}>
+            <option value={0} disabled hidden>
               اختر الجامعة
+            </option>
+             <option value={0}>
+              جميع الجامعات
             </option>
 
             {universities.map((item) => (
@@ -138,8 +166,11 @@ export default function PostFilters({
             }
             className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
           >
-            <option value={0}>
+            <option value={0} disabled hidden>
               اختيار الوقت
+            </option>
+            <option value={0} >
+              جميع الاوقات
             </option>
 
             <option value={1}>
@@ -163,10 +194,12 @@ export default function PostFilters({
             }
             className="w-full rounded-xl bg-[#EFE1D1] px-4 py-3 text-[#432E1A] outline-none"
           >
-            <option value={0}>
+            <option value={0} disabled hidden>
               اختيار نوع السائق
             </option>
-
+            <option value={0} disabled hidden>
+              جميع السائقين
+            </option>
             <option value={2}>
               ذكر
             </option>

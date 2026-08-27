@@ -31,6 +31,8 @@ export default function EditPostPage() {
   const [universityId, setUniversityId] = useState<number>(0);
 
   const [shift, setShift] = useState<number>(0);
+    const [part, setPart] = useState<number>(0);
+
 
   const [governorateId, setGovernorateId] = useState<number>(1);
 
@@ -318,6 +320,26 @@ setUniversityId(university?.id ?? 0);
                   value={3}     >
                   صباحي - مسائي
                 </option>
+
+              </select>
+            </div>
+
+             <div>
+              <label className="mb-2 block text-sm text-[#EFE1D1]/70" dir="rtl">
+                الدوام
+              </label>
+
+              <select
+              dir="rtl"
+                value={part}
+                onChange={(e) => setPart(Number(e.target.value))}
+                className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
+              >
+                <option value={0} disabled>اختيار الوقت</option>
+
+                <option value={1}>كرخ</option>
+                <option value={2}>رصافة</option>
+               
 
               </select>
             </div>
