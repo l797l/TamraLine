@@ -8,7 +8,7 @@ import { createPost } from "../../../../auth/post/postApi";
 import { areasInf, universitiesInf } from "@/src/Information/information";
 import { Camera } from "lucide-react";
  import { CarFront } from "lucide-react";
-import { getToken, setToken } from "@/src/app/auth/auth";
+import { getToken } from "@/src/app/auth/auth";
 
 
 

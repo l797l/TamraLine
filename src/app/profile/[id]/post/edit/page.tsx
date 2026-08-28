@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { getProfile, updatePost } from "../../../../auth/post/postApi";
+import { updatePost } from "../../../../auth/post/postApi";
 
 import { GetProfileDto } from "../../../../auth/post/postDto";
 import { areasInf, universitiesInf } from "@/src/Information/information";
@@ -59,7 +59,12 @@ export default function EditPostPage() {
         setLoading(true);
         setError("");
 
-        const data = await getProfile(id);
+        const result = localStorage.getItem("GetProfile")
+         if(result == null){
+        router.replace("/404")
+        return
+      }
+        const data = JSON.parse(result)
          if(data == null){
         router.replace("/404")
         return

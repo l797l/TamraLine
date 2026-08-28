@@ -1,7 +1,7 @@
 "use client";
 
 import { getToken } from "@/src/app/auth/auth";
-import { GetUser, UpdateUser } from "@/src/app/auth/User/UserApi";
+import {  UpdateUser } from "@/src/app/auth/User/UserApi";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
