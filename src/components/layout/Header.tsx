@@ -34,6 +34,8 @@ export default function Header() {
   const handleLogout = () => {
     setToken("");
     localStorage.removeItem("userId");
+     localStorage.removeItem("GetProfile")
+
 
     setLogin(false);
     setOpen(false);
