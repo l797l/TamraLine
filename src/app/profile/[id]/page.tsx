@@ -39,15 +39,15 @@ export default function ProfilePage() {
       setIsUserId(isId) 
       
       const datacache = localStorage.getItem("GetProfile")
-      if(isUserId && datacache)
+      if(isId && datacache)
         setPost(JSON.parse(datacache))
 
-      if(!isUserId || !datacache){
+      if(!isId || !datacache){
       try {
         setLoading(true);
         setError("");
         const data = await getProfile(id);
-      if(isUserId)
+      if(isId && datacache)
         localStorage.setItem("GetProfile", JSON.stringify(data))
 
         setPost(data);
