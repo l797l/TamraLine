@@ -36,17 +36,25 @@ export default function ProfilePage() {
       getToken()
       const userId = localStorage.getItem("userId")
       setIsUserId(id == userId) 
+      
+      const datacache = localStorage.getItem("GetProfile")
+      if(isUserId && datacache)
+        setPost(JSON.parse(datacache))
+
+      if(!isUserId || !datacache){
       try {
         setLoading(true);
         setError("");
-
         const data = await getProfile(id);
+      if(isUserId)
+        localStorage.setItem("GetProfile", JSON.stringify(data))
 
         setPost(data);
       } catch (error) {
         setError("فشل في تحميل بيانات المستخدم");
       } finally {
         setLoading(false);
+      }
       }
     };
 

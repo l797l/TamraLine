@@ -26,7 +26,10 @@ export default function EditProfilePage() {
     const loadingdata = async () => {
       setLoading(true);
       
-      const result = await GetUser();
+     const data = localStorage.getItem("GetProfile")
+     if(data){
+        const result = JSON.parse(data)
+      
       if(result == null){
         router.replace("/404")
         return
@@ -35,6 +38,10 @@ export default function EditProfilePage() {
       setPhoneNumber(result.phoneNumber);
       setGender(result.gender);
       setLoading(false);
+      }else{
+        router.replace("/404")
+        return
+      }
     };
     loadingdata();
   }, []);
