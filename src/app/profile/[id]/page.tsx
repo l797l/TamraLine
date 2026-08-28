@@ -35,7 +35,8 @@ export default function ProfilePage() {
     const loadProfile = async () => {
       getToken()
       const userId = localStorage.getItem("userId")
-      setIsUserId(id == userId) 
+      const isId = id == userId
+      setIsUserId(isId) 
       
       const datacache = localStorage.getItem("GetProfile")
       if(isUserId && datacache)
