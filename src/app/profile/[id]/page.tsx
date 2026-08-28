@@ -47,7 +47,7 @@ export default function ProfilePage() {
         setLoading(true);
         setError("");
         const data = await getProfile(id);
-      if(isId && datacache)
+      if(isId)
         localStorage.setItem("GetProfile", JSON.stringify(data))
 
         setPost(data);
