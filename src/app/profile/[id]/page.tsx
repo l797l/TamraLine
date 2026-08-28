@@ -39,8 +39,11 @@ export default function ProfilePage() {
       setIsUserId(isId) 
       
       const datacache = localStorage.getItem("GetProfile")
-      if(isId && datacache)
+      if(isId && datacache){
         setPost(JSON.parse(datacache))
+        setLoading(false);
+
+        }
 
       if(!isId || !datacache){
       try {
