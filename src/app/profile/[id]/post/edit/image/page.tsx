@@ -68,7 +68,7 @@ export default function EditImagePage() {
       }
 
       alert("تم تحديث صورة السيارة بنجاح");
-
+      localStorage.removeItem("GetProfile")
       router.push(`/profile/${id}`);
       router.refresh();
     } catch (error) {
