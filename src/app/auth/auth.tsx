@@ -10,14 +10,14 @@ export function getToken(): string | null {
   if(Date.now() > data.Time){
     localStorage.removeItem("token")
     localStorage.removeItem("userId")
+    localStorage.removeItem("GetProfile")
     }
-          return data.token
+    else
+      return data.token
+
 
   }
         return null
-
-
-
 }
 
 export function setToken(token: string) {

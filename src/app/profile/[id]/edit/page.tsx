@@ -60,7 +60,7 @@ export default function EditProfilePage() {
       await UpdateUser(fullName, phoneNumber, gender);
 
       alert("تم حفظ بيانات الحساب بنجاح");
-
+      localStorage.removeItem("GetProfile")
       router.push(`/profile/${id}`);
     } catch (error) {
       console.error("Get user error:", error);
@@ -133,7 +133,7 @@ export default function EditProfilePage() {
                 className="w-full rounded-2xl bg-[#5B3F22] px-4 py-3 cursor-pointer text-[#EFE1D1] outline-none focus:ring-2 focus:ring-[#EFE1D1]"
               >
                 <option value={1}>أنثى</option>
-                <option value={0}>ذكر</option>
+                <option value={2}>ذكر</option>
               </select>
             </div>
 

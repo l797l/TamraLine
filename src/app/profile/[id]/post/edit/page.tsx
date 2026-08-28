@@ -176,6 +176,7 @@ setUniversityId(university?.id ?? 0);
       );
 
       alert("تم تعديل المنشور بنجاح");
+      localStorage.removeItem("GetProfile")
 
       router.push(`/profile/${id}`);
     } catch (error) {
