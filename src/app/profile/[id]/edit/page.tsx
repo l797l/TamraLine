@@ -1,5 +1,6 @@
 "use client";
 
+import { getToken } from "@/src/app/auth/auth";
 import { GetUser, UpdateUser } from "@/src/app/auth/User/UserApi";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,6 +18,11 @@ export default function EditProfilePage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const toekn = getToken()
+    if(!toekn){
+      router.push("/404")
+      return
+      }
     const loadingdata = async () => {
       setLoading(true);
       

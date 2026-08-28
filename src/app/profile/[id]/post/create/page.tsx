@@ -8,6 +8,7 @@ import { createPost } from "../../../../auth/post/postApi";
 import { areasInf, universitiesInf } from "@/src/Information/information";
 import { Camera } from "lucide-react";
  import { CarFront } from "lucide-react";
+import { getToken, setToken } from "@/src/app/auth/auth";
 
 
 
@@ -53,6 +54,11 @@ export default function CreatePostPage() {
   }, [imagePreview]);
 
 
+  useEffect(() => {
+    const token =getToken()
+    if(!token)
+      router.push("/404")
+  }, []);
   const toggleArea = (areaId: number) => {
     setAreas((current) =>
       current.includes(areaId)

@@ -18,6 +18,7 @@ import WhatAppSection from "./components/WhatAppSection";
 import ArchivesStatus from "./components/ArchivesStatus";
 import { TriangleAlert } from "lucide-react";
 import GoToPage from "./components/GoToPage";
+import { getToken } from "../../auth/auth";
 
 
 export default function ProfilePage() {
@@ -32,6 +33,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const loadProfile = async () => {
+      getToken()
       const userId = localStorage.getItem("userId")
       setIsUserId(id == userId) 
       try {

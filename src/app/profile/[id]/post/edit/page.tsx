@@ -7,6 +7,7 @@ import { getProfile, updatePost } from "../../../../auth/post/postApi";
 
 import { GetProfileDto } from "../../../../auth/post/postDto";
 import { areasInf, universitiesInf } from "@/src/Information/information";
+import { getToken } from "@/src/app/auth/auth";
 
 
 const mockAreas = areasInf
@@ -47,7 +48,12 @@ export default function EditPostPage() {
 
   useEffect(() => {
     const loadProfile = async () => {
+      getToken()
       const id = localStorage.getItem("userId")
+      if(!id){
+        router.push("/404")
+      return
+      }
       if(id)
       try {
         setLoading(true);
