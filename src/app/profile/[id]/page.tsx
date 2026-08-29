@@ -42,8 +42,9 @@ export default function ProfilePage() {
       const datacache = localStorage.getItem("GetProfile")
       
       if(isId && datacache){
+        const check = JSON.parse(datacache)
         setPost(JSON.parse(datacache))
-        if(post?.status == 0)
+        if(check.status == 0)
           localStorage.removeItem("GetProfile")
         setLoading(false);
 
