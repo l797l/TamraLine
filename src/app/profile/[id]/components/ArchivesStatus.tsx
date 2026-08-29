@@ -28,6 +28,7 @@ export default function ArchivesStatus({
 
      if(result < 300){
       setIsArchived((prev) => !prev);
+      localStorage.removeItem("GetProfile")
       window.location.reload();
       }
     } catch (error) {
