@@ -260,7 +260,7 @@ export default function CreatePostPage() {
         shift,
         description
       );
-
+       localStorage.removeItem("GetProfile")
       alert("تم إنشاء المنشور بنجاح");
 
       router.push(`/profile/${id}`);
