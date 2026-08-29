@@ -38,6 +38,7 @@ export default function ProfilePage() {
       const isId = id == userId
       setIsUserId(isId) 
       
+      
       const datacache = localStorage.getItem("GetProfile")
       if(isId && datacache){
         setPost(JSON.parse(datacache))
@@ -156,21 +157,15 @@ export default function ProfilePage() {
               post={post}
               userId={id}
               isUser={isUserId}
-
             />
-
             <AreasSection
               post={post}
               userId={id}
               isUser={isUserId}
-
             />
-
           </div>
         )}
-
       </div>
-
     </main>
   );
 }
