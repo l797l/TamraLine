@@ -31,9 +31,11 @@ export default function ProfilePage() {
   const [isUserId, setIsUserId] = useState(false);
 
 
+
   useEffect(() => {
     const loadProfile = async () => {
       getToken()
+      let isRemoveStatus = false;
       const userId = localStorage.getItem("userId")
       const isId = id == userId
       setIsUserId(isId) 
@@ -44,13 +46,15 @@ export default function ProfilePage() {
       if(isId && datacache){
         const check = JSON.parse(datacache)
         setPost(JSON.parse(datacache))
-        if(check.status == 0)
+        if(check.status == 0){
           localStorage.removeItem("GetProfile")
+          isRemoveStatus =true
+          }
         setLoading(false);
 
         }
 
-      if(!isId || !datacache){
+      if(!isId || !datacache || isRemoveStatus){
       try {
         setLoading(true);
         setError("");
