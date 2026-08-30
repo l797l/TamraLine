@@ -68,7 +68,6 @@ export default function Login() {
       if (result == null) {
         setLoading(false);
         setErrorMessage(message ?? "رقم الهاتف أو كلمة المرور غير صحيحة");
-        setPassword("")
         return;
       }
 
@@ -81,8 +80,6 @@ export default function Login() {
         } else {
           setLoading(false);
         setErrorMessage(result.data.message ?? "رقم الهاتف أو كلمة المرور غير صحيحة");
-         setPassword("")
-
         }
       } else {
         setLoading(false);
